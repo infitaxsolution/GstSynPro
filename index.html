@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSTSyncPro – Advanced GSTR-2B Reconciliation | by Infitax Solution</title>
+<meta name="description" content="GSTSyncPro by Infitax Solution — powerful Chrome extension for GSTR-2B vs Books reconciliation. Trusted by GST professionals across India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-deep: #0a4f2e;
+  --green-mid: #166a40;
+  --green-bright: #22c55e;
+  --green-light: #bbf7d0;
+  --green-pale: #f0fdf4;
+  --gold: #f59e0b;
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+  --text: #0f1f12;
+  --shadow: 0 4px 32px rgba(22,106,64,0.10);
+  --radius: 16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;width:100%;z-index:999;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-200);padding:0 5%}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo .logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--green-deep),var(--green-bright));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:16px}
+.nav-logo .logo-text{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo .logo-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--green-deep)}
+.nav-logo .logo-sub{font-size:10px;font-weight:500;color:var(--gray-600);letter-spacing:.3px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--gray-600);transition:.2s}
+.nav-links a:hover{color:var(--green-mid)}
+.nav-cta{background:var(--green-mid);color:#fff;padding:9px 22px;border-radius:8px;font-size:14px;font-weight:600;transition:.2s}
+.nav-cta:hover{background:var(--green-deep);color:#fff}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--green-deep);border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;width:100%;background:#fff;border-bottom:1px solid var(--gray-200);padding:20px 5%;z-index:998}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:12px 0;font-size:15px;font-weight:500;color:var(--gray-600);border-bottom:1px solid var(--gray-100)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--green-pale) 0%,#e8f5e9 40%,#fff 100%);display:flex;align-items:center;padding:100px 5% 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-120px;width:600px;height:600px;background:radial-gradient(circle,rgba(34,197,94,0.12) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(10,79,46,0.07) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);color:var(--green-deep);padding:6px 14px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:20px;border:1px solid rgba(34,197,94,0.3)}
+.hero-badge::before{content:'●';color:var(--green-bright);font-size:10px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.1;color:var(--green-deep);margin-bottom:20px}
+h1 span{color:var(--green-bright)}
+.hero-sub{font-size:18px;color:var(--gray-600);line-height:1.7;margin-bottom:36px;max-width:480px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{background:linear-gradient(135deg,var(--green-mid),var(--green-deep));color:#fff;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;transition:.25s;box-shadow:0 4px 20px rgba(22,106,64,0.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(22,106,64,0.4);color:#fff}
+.btn-secondary{background:#fff;color:var(--green-mid);padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;border:2px solid var(--green-mid);transition:.25s}
+.btn-secondary:hover{background:var(--green-pale);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:30px;flex-wrap:wrap}
+.stat{text-align:left}
+.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--green-deep)}
+.stat-label{font-size:13px;color:var(--gray-600);margin-top:2px}
+.hero-visual{position:relative}
+.hero-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(22,106,64,0.15);border:1px solid var(--gray-200);position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green-bright),var(--green-deep))}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.card-dots{display:flex;gap:6px}
+.card-dots span{width:10px;height:10px;border-radius:50%;background:var(--gray-200)}
+.card-dots span:first-child{background:#ff5f57}
+.card-dots span:nth-child(2){background:#ffbd2e}
+.card-dots span:last-child{background:#28c840}
+.card-title{font-size:13px;color:var(--gray-600);font-weight:500}
+.match-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:13px;font-weight:500}
+.match-row.matched{background:#f0fdf4;border:1px solid #bbf7d0;color:var(--green-mid)}
+.match-row.pending{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+.match-row.mismatch{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.match-badge{font-size:11px;padding:3px 10px;border-radius:50px;font-weight:600}
+.match-badge.m{background:#dcfce7;color:#166534}
+.match-badge.p{background:#fef9c3;color:#713f12}
+.match-badge.x{background:#fee2e2;color:#7f1d1d}
+.itc-box{margin-top:16px;background:var(--green-deep);border-radius:10px;padding:14px 16px;color:#fff}
+.itc-label{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.5px}
+.itc-amount{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-top:2px}
+.floating-tag{position:absolute;background:#fff;border-radius:10px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.12);font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.floating-tag.t1{top:-16px;right:20px;color:var(--green-mid);animation:float1 3s ease-in-out infinite}
+.floating-tag.t2{bottom:-16px;left:10px;color:#f59e0b;animation:float2 3s ease-in-out infinite 1.5s}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ── SECTION BASE ── */
+section{padding:80px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:13px;font-weight:700;color:var(--green-bright);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--green-deep);margin-bottom:16px;line-height:1.2}
+.section-sub{font-size:17px;color:var(--gray-600);max-width:560px;line-height:1.7}
+
+/* ── HOW IT WORKS ── */
+.how{background:var(--gray-50)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;margin-top:50px}
+.step-card{background:#fff;border-radius:16px;padding:28px;border:1px solid var(--gray-200);position:relative;transition:.3s}
+.step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.step-num{width:44px;height:44px;background:linear-gradient(135deg,var(--green-mid),var(--green-bright));border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;margin-bottom:18px}
+.step-card h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--green-deep);margin-bottom:10px}
+.step-card p{font-size:14px;color:var(--gray-600);line-height:1.6}
+
+/* ── FEATURES ── */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:50px}
+.feat{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:26px;transition:.3s;position:relative;overflow:hidden}
+.feat::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--green-bright),var(--green-deep));opacity:0;transition:.3s}
+.feat:hover::before{opacity:1}
+.feat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.feat-icon{font-size:28px;margin-bottom:14px}
+.feat h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--green-deep);margin-bottom:8px}
+.feat p{font-size:14px;color:var(--gray-600);line-height:1.6}
+
+/* ── PRICING ── */
+.pricing{background:linear-gradient(160deg,var(--green-deep) 0%,#0d5c34 100%);color:#fff}
+.pricing .section-title{color:#fff}
+.pricing .section-sub{color:rgba(255,255,255,.7)}
+.pricing .section-label{color:var(--green-bright)}
+.discount-banner{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:12px 20px;display:inline-flex;align-items:center;gap:10px;margin-top:20px;margin-bottom:50px;font-size:14px;font-weight:500;color:rgba(255,255,255,.9)}
+.discount-banner strong{color:var(--green-bright)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.plan{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:32px;position:relative;transition:.3s;backdrop-filter:blur(10px)}
+.plan:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+.plan.popular{border-color:var(--green-bright);background:rgba(34,197,94,.1)}
+.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--green-bright);color:var(--green-deep);font-size:12px;font-weight:700;padding:5px 18px;border-radius:50px;white-space:nowrap}
+.plan-icon{font-size:36px;margin-bottom:16px}
+.plan-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px}
+.plan-desc{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:20px}
+.plan-price{margin-bottom:8px}
+.price-original{font-size:15px;color:rgba(255,255,255,.4);text-decoration:line-through;display:block}
+.price-current{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;color:var(--green-bright)}
+.price-current span{font-size:16px;font-weight:500;color:rgba(255,255,255,.6)}
+.price-note{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:24px}
+.plan-features{list-style:none;margin-bottom:28px}
+.plan-features li{font-size:14px;color:rgba(255,255,255,.8);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:8px}
+.plan-features li::before{content:'✓';color:var(--green-bright);font-weight:700;flex-shrink:0}
+.plan-btn{display:block;text-align:center;background:var(--green-bright);color:var(--green-deep);padding:13px;border-radius:10px;font-weight:700;font-size:15px;transition:.25s;cursor:pointer;border:none;width:100%}
+.plan-btn:hover{background:#16a34a;color:#fff;transform:translateY(-1px)}
+.plan.popular .plan-btn{background:#fff;color:var(--green-deep)}
+.plan.popular .plan-btn:hover{background:var(--green-bright)}
+.upi-note{margin-top:40px;text-align:center;font-size:13px;color:rgba(255,255,255,.55);background:rgba(255,255,255,.05);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,.1)}
+
+/* ── TRIAL ── */
+.trial-box{background:var(--green-pale);border:2px dashed var(--green-light);border-radius:20px;padding:36px;text-align:center;margin-top:50px}
+.trial-box h3{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green-deep);margin-bottom:10px}
+.trial-box p{color:var(--gray-600);font-size:15px;margin-bottom:20px}
+
+/* ── FAQ ── */
+.faq-list{margin-top:50px;display:grid;gap:14px}
+.faq-item{background:#fff;border:1px solid var(--gray-200);border-radius:14px;overflow:hidden}
+.faq-q{padding:18px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15px;color:var(--green-deep);transition:.2s}
+.faq-q:hover{background:var(--green-pale)}
+.faq-arrow{font-size:18px;transition:.3s;color:var(--green-bright)}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{padding:0 22px;max-height:0;overflow:hidden;transition:.35s ease;font-size:14px;color:var(--gray-600);line-height:1.7}
+.faq-item.open .faq-a{padding:0 22px 18px;max-height:300px}
+
+/* ── POLICIES SECTION ── */
+.policies{background:var(--gray-50)}
+.policy-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;margin-top:36px}
+.ptab{padding:10px 22px;border-radius:8px;border:2px solid var(--gray-200);background:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:.2s;color:var(--gray-600)}
+.ptab.active{border-color:var(--green-mid);background:var(--green-mid);color:#fff}
+.policy-content{display:none;background:#fff;border-radius:16px;padding:36px;border:1px solid var(--gray-200);line-height:1.8;font-size:14px;color:var(--gray-700)}
+.policy-content.active{display:block}
+.policy-content h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green-deep);margin-bottom:6px}
+.policy-content .eff-date{font-size:13px;color:var(--gray-600);margin-bottom:24px}
+.policy-content h3{font-size:15px;font-weight:700;color:var(--green-deep);margin:22px 0 8px}
+.policy-content p,.policy-content li{font-size:14px;color:#374151;line-height:1.8;margin-bottom:8px}
+.policy-content ul{padding-left:20px}
+.policy-content ul li{list-style:disc}
+.policy-content a{color:var(--green-mid);text-decoration:underline}
+
+/* ── CONTACT ── */
+.contact{background:var(--green-deep);color:#fff}
+.contact .section-title{color:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:50px;align-items:start}
+.contact-info h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:24px;color:rgba(255,255,255,.9)}
+.contact-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:24px}
+.c-icon{width:42px;height:42px;background:rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-label{font-size:12px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
+.c-val{font-size:15px;color:#fff;margin-top:3px;font-weight:500}
+.c-val a{color:var(--green-bright)}
+.contact-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:32px}
+.contact-form h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:22px;color:#fff}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:11px 14px;color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:.2s}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.35)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--green-bright)}
+.form-group select option{background:var(--green-deep);color:#fff}
+.form-group textarea{resize:vertical;min-height:100px}
+.submit-btn{background:var(--green-bright);color:var(--green-deep);border:none;padding:13px 28px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:.25s;font-family:'DM Sans',sans-serif}
+.submit-btn:hover{background:#16a34a;color:#fff}
+.form-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:10px;text-align:center}
+
+/* ── FOOTER ── */
+footer{background:#071a0f;color:rgba(255,255,255,.6);padding:50px 5% 30px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.5);margin-top:12px;max-width:280px}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:rgba(255,255,255,.5);margin-bottom:10px;transition:.2s}
+.footer-col a:hover{color:var(--green-bright)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,.35)}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:20px;padding:36px;max-width:440px;width:90%;position:relative;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray-600);line-height:1}
+.modal-close:hover{color:var(--green-deep)}
+.modal h3{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green-deep);margin-bottom:6px}
+.modal .plan-tag{display:inline-block;background:var(--green-pale);color:var(--green-mid);border:1px solid var(--green-light);border-radius:6px;padding:4px 12px;font-size:12px;font-weight:700;margin-bottom:18px}
+.modal-price-row{display:flex;align-items:center;gap:14px;margin-bottom:22px;background:var(--green-pale);border-radius:12px;padding:14px 18px}
+.modal-price-row .orig{font-size:15px;text-decoration:line-through;color:var(--gray-600)}
+.modal-price-row .curr{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--green-deep)}
+.modal-price-row .badge{background:var(--green-bright);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:50px}
+.pay-btn{display:block;width:100%;padding:14px;text-align:center;background:linear-gradient(135deg,var(--green-mid),var(--green-deep));color:#fff;border-radius:10px;font-weight:700;font-size:16px;margin-bottom:12px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.pay-btn:hover{opacity:.92;transform:translateY(-1px)}
+.modal-note{font-size:12px;color:var(--gray-600);text-align:center;line-height:1.6}
+.modal-note strong{color:var(--green-mid)}
+.modal-upi-note{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;font-size:12px;color:#92400e;margin-top:14px;text-align:center}
+.modal-features{margin-bottom:20px}
+.modal-features li{font-size:13px;color:var(--gray-600);padding:5px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--gray-100)}
+.modal-features li::before{content:'✓';color:var(--green-bright);font-weight:700}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:30px;right:30px;background:var(--green-deep);color:#fff;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;z-index:99999;transform:translateY(80px);opacity:0;transition:.4s;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:600px){
+  .footer-top{grid-template-columns:1fr}
+  .hero-stats{gap:20px}
+  section{padding:60px 5%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-icon">I</div>
+      <div class="logo-text">
+        <span class="logo-brand">Infitax Solution</span>
+        <span class="logo-sub">GSTSyncPro — GSTR-2B Reconciler</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#policies">Policies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#pricing" class="nav-cta">Buy License</a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="toggleMenu()">Features</a>
+  <a href="#how" onclick="toggleMenu()">How it Works</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#policies" onclick="toggleMenu()">Policies</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#pricing" onclick="toggleMenu()" style="color:var(--green-mid);font-weight:700;margin-top:8px">🔑 Buy License</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🇮🇳 By Infitax Solution — Made for Indian GST Professionals</div>
+      <h1>Smart GSTR-2B<br><span>Reconciliation</span><br>in Minutes</h1>
+      <p class="hero-sub">GSTSyncPro reconciles your GSTR-2B Purchase & CN/DN data with Books of Accounts using advanced multi-pass matching — directly inside Chrome.</p>
+      <div class="hero-actions">
+        <a href="https://chrome.google.com/webstore" target="_blank" class="btn-primary">🔗 Add to Chrome — Free Trial</a>
+        <a href="#pricing" class="btn-secondary">View Plans →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">3-Pass</div><div class="stat-label">Purchase Matching</div></div>
+        <div class="stat"><div class="stat-num">6-Pass</div><div class="stat-label">CN/DN Matching</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Local Processing</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-tag t1">✅ 47 Records Matched</div>
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="card-dots"><span></span><span></span><span></span></div>
+          <span class="card-title">GSTR-2B Reconciliation — v3.1</span>
+        </div>
+        <div class="match-row matched"><span>GSTIN: 24ABCDE1234F1Z5</span><span class="match-badge m">Exact Match</span></div>
+        <div class="match-row matched"><span>GSTIN: 27FGHIJ5678K2L3</span><span class="match-badge m">Fuzzy Match</span></div>
+        <div class="match-row pending"><span>GSTIN: 29MNOPQ9012R3S4</span><span class="match-badge p">Pending</span></div>
+        <div class="match-row mismatch"><span>GSTIN: 33TUVWX3456Y7Z8</span><span class="match-badge x">Mismatch</span></div>
+        <div class="match-row matched"><span>GSTIN: 24LMNOP7890Q1R2</span><span class="match-badge m">Amount Match</span></div>
+        <div class="itc-box">
+          <div class="itc-label">Net ITC Claimable</div>
+          <div class="itc-amount">₹ 2,34,850.00</div>
+        </div>
+      </div>
+      <div class="floating-tag t2">⚡ Dark Mode Ready</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div class="section-label">Simple Process</div>
+    <div class="section-title">How GSTSyncPro Works</div>
+    <p class="section-sub">From file upload to ITC summary in four easy steps. No data leaves your browser.</p>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Upload 4 Files</h3>
+        <p>Drag & drop your GSTR-2B Purchase, Books Purchase, GSTR-2B CN/DN, and Books CN/DN files directly into the extension.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Auto-Reconcile</h3>
+        <p>GSTSyncPro runs 3-pass purchase matching (Exact → Fuzzy → Amount) and 6-pass CN/DN matching automatically.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Review & Act</h3>
+        <p>Accept, unmatch, pair, force-pair or mark as "Not Matched" on each record. Use bulk actions for speed.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Export Results</h3>
+        <p>Export your reconciliation as Excel (formatted), JSON, or copy the ITC summary directly — Net Claimable ready.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-label">Capabilities</div>
+    <div class="section-title">Everything You Need for GST Reconciliation</div>
+    <p class="section-sub">Built for CA firms, tax professionals, and businesses handling GSTR-2B at scale.</p>
+    <div class="features-grid">
+      <div class="feat"><div class="feat-icon">📂</div><h3>4-File Upload</h3><p>GSTR-2B Purchase, Books Purchase, GSTR-2B CN/DN, Books CN/DN — each with clear upload and reset buttons.</p></div>
+      <div class="feat"><div class="feat-icon">🔄</div><h3>3-Pass Purchase Matching</h3><p>Exact match → Fuzzy match → Amount-based match. Maximum reconciliation coverage automatically.</p></div>
+      <div class="feat"><div class="feat-icon">↕️</div><h3>6-Pass CN/DN Matching</h3><p>Cross-type (3 passes) + Same-type (3 passes) for complete Credit & Debit Note reconciliation.</p></div>
+      <div class="feat"><div class="feat-icon">💰</div><h3>Combined ITC Summary</h3><p>Net Claimable ITC = Purchase ITC + Debit Note ITC − Credit Note ITC, calculated automatically.</p></div>
+      <div class="feat"><div class="feat-icon">⚙️</div><h3>Per-Record Actions</h3><p>Accept, Unmatch, Pair, Force Pair, Not Matched — with bulk select-all and GSTIN click-to-filter.</p></div>
+      <div class="feat"><div class="feat-icon">📊</div><h3>Excel & JSON Export</h3><p>Formatted Excel export with simple fallback, JSON export, and one-click Copy Summary.</p></div>
+      <div class="feat"><div class="feat-icon">🌙</div><h3>Dark Mode</h3><p>Full dark mode with system auto-detect. Easy on the eyes during long reconciliation sessions.</p></div>
+      <div class="feat"><div class="feat-icon">💾</div><h3>Auto-Save State</h3><p>Your work is automatically saved and restored when you reopen the extension. No data loss.</p></div>
+      <div class="feat"><div class="feat-icon">❓</div><h3>Help & Guide Panel</h3><p>Searchable built-in help panel with contextual tooltips on every setting, column, and action button.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">License Plans</div>
+    <div class="section-title">Simple, Transparent Pricing</div>
+    <p class="section-sub">All plans include full access to every feature. Choose what fits your team size.</p>
+    <div class="discount-banner">
+      🎉 <strong>50% OFF</strong> on all plans — exclusively for UPI, Wallet & Net Banking payments
+    </div>
+    <div class="plans">
+      <!-- SILVER -->
+      <div class="plan">
+        <div class="plan-icon">🥈</div>
+        <div class="plan-name">Silver</div>
+        <div class="plan-desc">Perfect for individual tax professionals</div>
+        <div class="plan-price">
+          <span class="price-original">₹240 / year</span>
+          <span class="price-current">₹120 <span>/ year</span></span>
+        </div>
+        <div class="price-note">50% off with UPI / Wallet / Net Banking</div>
+        <ul class="plan-features">
+          <li>1 User License</li>
+          <li>1 Year Validity</li>
+          <li>All Features Unlocked</li>
+          <li>File Upload Enabled</li>
+          <li>Excel & JSON Export</li>
+          <li>Email Support</li>
+        </ul>
+        <button class="plan-btn" onclick="openModal('silver')">Buy Silver — ₹120</button>
+      </div>
+      <!-- GOLDEN -->
+      <div class="plan popular">
+        <div class="popular-badge">⭐ Most Popular</div>
+        <div class="plan-icon">🥇</div>
+        <div class="plan-name">Golden</div>
+        <div class="plan-desc">Ideal for CA firms & small teams</div>
+        <div class="plan-price">
+          <span class="price-original">₹480 / year</span>
+          <span class="price-current">₹240 <span>/ year</span></span>
+        </div>
+        <div class="price-note">50% off with UPI / Wallet / Net Banking</div>
+        <ul class="plan-features">
+          <li>Up to 5 Users</li>
+          <li>1 Year Validity</li>
+          <li>All Features Unlocked</li>
+          <li>File Upload Enabled</li>
+          <li>Excel & JSON Export</li>
+          <li>Priority Email Support</li>
+        </ul>
+        <button class="plan-btn" onclick="openModal('golden')">Buy Golden — ₹240</button>
+      </div>
+      <!-- LIFETIME -->
+      <div class="plan">
+        <div class="plan-icon">💎</div>
+        <div class="plan-name">Lifetime</div>
+        <div class="plan-desc">Best value for long-term use</div>
+        <div class="plan-price">
+          <span class="price-original">₹10,000 one-time</span>
+          <span class="price-current">₹5,000 <span>one-time</span></span>
+        </div>
+        <div class="price-note">50% off with UPI / Wallet / Net Banking</div>
+        <ul class="plan-features">
+          <li>Up to 3 Users</li>
+          <li>Lifetime Validity</li>
+          <li>All Features Unlocked</li>
+          <li>File Upload Enabled</li>
+          <li>All Future Updates</li>
+          <li>Priority Support Forever</li>
+        </ul>
+        <button class="plan-btn" onclick="openModal('lifetime')">Buy Lifetime — ₹5,000</button>
+      </div>
+    </div>
+    <div class="upi-note">
+      ⚠️ <strong>Discount applicable only for UPI, Wallet & Net Banking transactions.</strong> Credit/Debit Card and other payment modes are not eligible for the 50% discount. Discounted price will be shown at checkout.
+    </div>
+    <!-- FREE TRIAL -->
+    <div class="trial-box">
+      <h3>🆓 Try Before You Buy</h3>
+      <p>Install GSTSyncPro free — all features are fully enabled. File uploads are locked until you activate a license. Use the preloaded sample data to explore the full reconciliation workflow.</p>
+      <a href="https://chrome.google.com/webstore" target="_blank" class="btn-primary" style="display:inline-block">Add to Chrome — Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Frequently Asked Questions</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the difference between plans? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Silver is for 1 user for 1 year (₹120). Golden is for up to 5 users for 1 year (₹240). Lifetime is for up to 3 users with lifetime access and all future updates (₹5,000). All plans unlock the same features — only user count and validity differ.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I activate my license? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">After purchase, you will receive your license key via email at the address you provide during checkout. Open the GSTSyncPro extension, go to the Activate License screen, enter your email and license key, and click Verify & Activate.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is my data safe? Does it upload anywhere? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Your financial data never leaves your device. GSTSyncPro processes all files locally inside your browser. Only license validation communicates with our server — no GST data, GSTIN, or invoice data is ever transmitted.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Why am I not getting the 50% discount? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">The 50% discount is exclusively available on UPI, Wallet (Paytm, Mobikwik, etc.), and Net Banking transactions. Credit cards, debit cards, and international payment methods are not eligible for this discount.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What file formats are supported for upload? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">GSTSyncPro supports Excel (.xlsx, .xls) and CSV formats for all four file types — GSTR-2B Purchase, Books Purchase, GSTR-2B CN/DN, and Books CN/DN.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I get a refund? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Refunds are only considered for proven technical deficiencies or service failures caused by Infitax Solution that cannot be resolved within 7 working days. Refunds are <strong>not available</strong> for change of mind, user-side compatibility issues, or general dissatisfaction. Annual plan requests must be raised within 7 days of purchase. For the Lifetime Plan, issues can be reported at any time — but Infitax Solution holds the sole right to accept or reject any refund. See our full Refund Policy or email <a href="mailto:Infitaxsolution@gmail.com">Infitaxsolution@gmail.com</a>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does GSTSyncPro work offline? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes — reconciliation, matching, and export all work offline. An internet connection is only needed during initial license activation and periodic validation checks.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section class="policies" id="policies">
+  <div class="section-inner">
+    <div class="section-label">Legal</div>
+    <div class="section-title">Our Policies</div>
+    <div class="policy-tabs">
+      <button class="ptab active" onclick="showPolicy('privacy',this)">Privacy Policy</button>
+      <button class="ptab" onclick="showPolicy('refund',this)">Refund Policy</button>
+      <button class="ptab" onclick="showPolicy('terms',this)">Terms of Use</button>
+      <button class="ptab" onclick="showPolicy('license',this)">License Policy</button>
+    </div>
+
+    <!-- PRIVACY -->
+    <div class="policy-content active" id="policy-privacy">
+      <h2>Privacy Policy</h2>
+      <p class="eff-date">Effective Date: April 1, 2025 | Business: Infitax Solution, Gandhidham, Gujarat, India</p>
+      <h3>1. Introduction</h3>
+      <p>Infitax Solution ("we", "our", "us") operates GSTSyncPro, a Chrome browser extension. This Privacy Policy explains how we collect, use, and protect information when you use our extension and website.</p>
+      <h3>2. Information We Collect</h3>
+      <ul>
+        <li><strong>License Activation Data:</strong> When you activate a license, we collect your email address and license key solely for the purpose of verifying your license entitlement.</li>
+        <li><strong>Contact Form Data:</strong> If you contact us through our website, we collect your name, email, and message content.</li>
+        <li><strong>No Financial Data:</strong> GSTSyncPro processes all GST files (GSTR-2B, Books data) locally within your browser. This data is never transmitted to, stored on, or accessed by our servers.</li>
+      </ul>
+      <h3>3. How We Use Your Information</h3>
+      <ul>
+        <li>To verify and manage your license subscription</li>
+        <li>To send your license key after purchase via email</li>
+        <li>To respond to support and contact inquiries</li>
+        <li>To send important product updates (you may opt out at any time)</li>
+      </ul>
+      <h3>4. Data Storage & Security</h3>
+      <p>Your email and license key are transmitted over HTTPS and stored securely. We do not sell, rent, or share your personal information with any third party except as required by law.</p>
+      <h3>5. Cookies</h3>
+      <p>Our website may use basic cookies for functionality. No tracking or advertising cookies are used. The extension itself does not use cookies.</p>
+      <h3>6. Children's Privacy</h3>
+      <p>GSTSyncPro is intended for business and professional use only. We do not knowingly collect information from individuals under 18 years of age.</p>
+      <h3>7. Changes to This Policy</h3>
+      <p>We may update this policy periodically. Continued use of GSTSyncPro after changes constitutes acceptance of the updated policy.</p>
+      <h3>8. Contact</h3>
+      <p>For privacy-related queries: <a href="mailto:Infitaxsolution@gmail.com">Infitaxsolution@gmail.com</a> | Infitax Solution, Gandhidham, Gujarat, India</p>
+    </div>
+
+    <!-- REFUND -->
+    <div class="policy-content" id="policy-refund">
+      <h2>Refund &amp; Cancellation Policy</h2>
+      <p class="eff-date">Effective Date: April 1, 2025 | Infitax Solution, Gandhidham, Gujarat, India</p>
+
+      <h3>1. Digital Product — No Automatic Refund</h3>
+      <p>GSTSyncPro licenses are digital products delivered electronically by Infitax Solution. By completing a purchase, you acknowledge and agree that <strong>refunds are not automatic or guaranteed</strong>. All refund requests are evaluated solely at the discretion of Infitax Solution, and our decision shall be final and binding.</p>
+
+      <h3>2. Grounds for Refund Consideration</h3>
+      <p>Infitax Solution will <strong>only consider</strong> a refund request under the following circumstances:</p>
+      <ul>
+        <li><strong>Technical Deficiency:</strong> A proven technical fault or bug in GSTSyncPro that prevents core functionality from working as described, which Infitax Solution is unable to resolve within 7 working days of the reported issue.</li>
+        <li><strong>Deficiency in Service:</strong> A verified failure in license delivery or activation caused solely by Infitax Solution's systems, which cannot be rectified.</li>
+      </ul>
+      <p>Refund requests for any other reason — including but not limited to change of mind, incorrect purchase, user-side system incompatibility, or dissatisfaction with features already described on the product page — will <strong>not be considered</strong>.</p>
+
+      <h3>3. Time Limit — 7 Days Only (Annual Plans)</h3>
+      <p>For Silver and Golden (annual) plans, all refund requests must be submitted <strong>within 7 calendar days</strong> from the date of purchase. No request received after 7 days will be entertained under any circumstances, regardless of the reason stated.</p>
+
+      <h3>4. Lifetime Plan — Special Condition</h3>
+      <p>For the Lifetime Plan, Infitax Solution acknowledges that technical issues may arise at any point during the lifetime of the product. If a genuine technical deficiency or service failure affecting a Lifetime Plan user is reported at any time, Infitax Solution reserves the <strong>sole and absolute right</strong> to decide whether a refund, partial refund, or an alternative resolution (such as a replacement license or extended support) is appropriate. <strong>No refund is guaranteed under the Lifetime Plan.</strong> Each case will be individually evaluated by Infitax Solution entirely at its own discretion.</p>
+
+      <h3>5. Infitax Solution's Sole Right to Accept or Reject</h3>
+      <p><strong>Infitax Solution unconditionally reserves the right to accept or reject any refund request at its sole discretion.</strong> Submission of a refund request does not in any way guarantee its approval. The final decision on all refund matters rests entirely with Infitax Solution and is not subject to appeal.</p>
+
+      <h3>6. Non-Refundable Situations</h3>
+      <ul>
+        <li>Refund requested after 7 days from the purchase date (annual plans)</li>
+        <li>License successfully activated and used, even partially</li>
+        <li>Issues arising from the user's own system, browser version, or incompatible file formats</li>
+        <li>Change of mind, accidental purchase, or preference for a different plan</li>
+        <li>Features working as described on the product page but not meeting personal expectations</li>
+        <li>Any request not directly related to a technical deficiency or service deficiency caused by Infitax Solution</li>
+      </ul>
+
+      <h3>7. How to Submit a Refund Request</h3>
+      <p>To raise a refund request, email <a href="mailto:Infitaxsolution@gmail.com">Infitaxsolution@gmail.com</a> within the applicable time period with the following information:</p>
+      <ul>
+        <li>Registered email address used at the time of purchase</li>
+        <li>Order / Transaction ID</li>
+        <li>Clear description of the technical deficiency or service issue experienced</li>
+        <li>Supporting screenshots or evidence (mandatory for technical issues)</li>
+      </ul>
+      <p>We will acknowledge your request within 3 working days. If approved at our discretion, the refund will be processed to the original payment method within 7–10 business days.</p>
+
+      <h3>8. Cancellation</h3>
+      <p>Silver and Golden plans are one-time annual purchases and are not auto-renewed. No cancellation action is required from your end. Your license will simply expire at the end of the validity period.</p>
+
+      <h3>9. Governing Note</h3>
+      <p>This policy is governed under the laws of India. By purchasing any GSTSyncPro license from Infitax Solution, you confirm that you have read, understood, and agreed to this Refund Policy in its entirety.</p>
+    </div>
+
+    <!-- TERMS -->
+    <div class="policy-content" id="policy-terms">
+      <h2>Terms of Use</h2>
+      <p class="eff-date">Effective Date: April 1, 2025 | Infitax Solution, Gandhidham, Gujarat, India</p>
+      <h3>1. Acceptance</h3>
+      <p>By installing or using GSTSyncPro, you agree to these Terms of Use. If you do not agree, please uninstall the extension and do not use the service.</p>
+      <h3>2. License Grant</h3>
+      <p>Upon purchasing a license, Infitax Solution grants you a non-exclusive, non-transferable license to use GSTSyncPro according to your plan (Silver: 1 user; Golden: up to 5 users; Lifetime: up to 3 users).</p>
+      <h3>3. Permitted Use</h3>
+      <ul>
+        <li>Use GSTSyncPro for your own GST reconciliation work</li>
+        <li>Install on devices within the licensed user count</li>
+        <li>Export and retain reconciliation outputs for your records</li>
+      </ul>
+      <h3>4. Prohibited Use</h3>
+      <ul>
+        <li>Sharing license keys with users beyond the licensed count</li>
+        <li>Reverse engineering, decompiling, or modifying the extension</li>
+        <li>Reselling or sublicensing GSTSyncPro to third parties</li>
+        <li>Using the extension for any unlawful purpose</li>
+      </ul>
+      <h3>5. Disclaimer of Warranty</h3>
+      <p>GSTSyncPro is provided "as is". Infitax Solution does not guarantee that the extension will be error-free or uninterrupted. Reconciliation outputs should be verified by a qualified professional before filing.</p>
+      <h3>6. Limitation of Liability</h3>
+      <p>Infitax Solution shall not be liable for any indirect, incidental, or consequential damages arising from use of GSTSyncPro, including but not limited to incorrect ITC claims or GST filings.</p>
+      <h3>7. Governing Law</h3>
+      <p>These terms are governed by the laws of India. Disputes shall be subject to the jurisdiction of courts in Gandhidham, Gujarat, India.</p>
+      <h3>8. Contact</h3>
+      <p><a href="mailto:Infitaxsolution@gmail.com">Infitaxsolution@gmail.com</a> | +91 6354030446 | Infitax Solution, Gandhidham, Gujarat, India</p>
+    </div>
+
+    <!-- LICENSE -->
+    <div class="policy-content" id="policy-license">
+      <h2>License Policy</h2>
+      <p class="eff-date">Effective Date: April 1, 2025 | Infitax Solution, Gandhidham, Gujarat, India</p>
+      <h3>1. License Types</h3>
+      <ul>
+        <li><strong>Silver Plan:</strong> 1 user, valid for 1 year from activation date.</li>
+        <li><strong>Golden Plan:</strong> Up to 5 users, valid for 1 year from activation date.</li>
+        <li><strong>Lifetime Plan:</strong> Up to 3 users, valid for lifetime with all future updates.</li>
+      </ul>
+      <h3>2. Activation</h3>
+      <p>Each license is activated by entering the registered email and license key in the GSTSyncPro extension. License keys are delivered to your registered email within a few minutes of payment confirmation.</p>
+      <h3>3. Trial Mode</h3>
+      <p>Without a license, GSTSyncPro runs in Trial Mode: all features are visible and functional, but file uploads are disabled. Pre-loaded sample data can be used to explore all features before purchase.</p>
+      <h3>4. Discount Conditions</h3>
+      <p>The 50% promotional discount is valid exclusively for payments made via UPI, Mobile Wallet, or Net Banking. Payments via Credit Card, Debit Card, or international payment methods are charged at the full price.</p>
+      <h3>5. License Transfers</h3>
+      <p>Licenses are non-transferable to a different registered email address unless approved by Infitax Solution support on a case-by-case basis.</p>
+      <h3>6. Renewal</h3>
+      <p>Annual plans (Silver, Golden) must be manually renewed before expiry to maintain file upload access. A reminder email will be sent 15 days before expiry.</p>
+      <h3>7. Violation</h3>
+      <p>Sharing license keys beyond the licensed user count will result in immediate license revocation without refund.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--green-bright)">Get in Touch</div>
+    <div class="section-title">Contact Infitax Solution</div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>We're here to help</h3>
+        <div class="contact-item">
+          <div class="c-icon">✉️</div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-val"><a href="mailto:Infitaxsolution@gmail.com">Infitaxsolution@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📱</div>
+          <div>
+            <div class="c-label">WhatsApp / Phone</div>
+            <div class="c-val"><a href="https://wa.me/916354030446" target="_blank">+91 6354030446</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📍</div>
+          <div>
+            <div class="c-label">Location</div>
+            <div class="c-val">Gandhidham, Gujarat, India</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">🌐</div>
+          <div>
+            <div class="c-label">Website</div>
+            <div class="c-val"><a href="https://infitaxsolution.wixsite.com/gstsyncpro" target="_blank">infitaxsolution.wixsite.com/gstsyncpro</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">⏰</div>
+          <div>
+            <div class="c-label">Support Hours</div>
+            <div class="c-val">Mon–Sat, 10:00 AM – 6:00 PM IST</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="e.g. Rajesh Mehta" id="cf-name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com" id="cf-email">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select id="cf-subject">
+            <option value="">Select a topic</option>
+            <option>License Activation Issue</option>
+            <option>Purchase / Payment Query</option>
+            <option>Refund Request</option>
+            <option>Technical Support</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Describe your query..." id="cf-msg"></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Send Message →</button>
+        <p class="form-note">We typically respond within 1 business day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <div class="logo-icon" style="width:36px;height:36px;background:linear-gradient(135deg,var(--green-deep),var(--green-bright));border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:15px">I</div>
+          <div>
+            <div style="color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:17px">Infitax Solution</div>
+            <div style="color:var(--green-bright);font-size:11px;font-weight:600;letter-spacing:.3px">Makers of GSTSyncPro</div>
+          </div>
+        </div>
+        <p>GSTSyncPro is a product of Infitax Solution — advanced GSTR-2B reconciliation tool for Indian tax professionals. Gandhidham, Gujarat, India.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#how">How it Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#policies" onclick="showPolicy('privacy',null)">Privacy Policy</a>
+        <a href="#policies" onclick="showPolicy('refund',null)">Refund Policy</a>
+        <a href="#policies" onclick="showPolicy('terms',null)">Terms of Use</a>
+        <a href="#policies" onclick="showPolicy('license',null)">License Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:Infitaxsolution@gmail.com">Email Us</a>
+        <a href="https://wa.me/916354030446" target="_blank">WhatsApp</a>
+        <a href="https://infitaxsolution.wixsite.com/gstsyncpro" target="_blank">Wix Site</a>
+        <a href="https://chrome.google.com/webstore" target="_blank">Chrome Web Store</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Infitax Solution. All rights reserved. GSTSyncPro is a registered brand of Infitax Solution.</p>
+      <p>Made with ❤️ in India 🇮🇳</p>
+    </div>
+  </div>
+</footer>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── NAV ───
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ─── FAQ ───
+function toggleFaq(el){
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+// ─── POLICY TABS ───
+function showPolicy(id, btn){
+  document.querySelectorAll('.policy-content').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.ptab').forEach(function(t){ t.classList.remove('active'); });
+  var content = document.getElementById('policy-' + id);
+  if(content) content.classList.add('active');
+  if(btn){
+    btn.classList.add('active');
+  } else {
+    document.querySelectorAll('.ptab').forEach(function(t){
+      var oc = t.getAttribute('onclick') || '';
+      if(oc.indexOf("'" + id + "'") !== -1) t.classList.add('active');
+    });
+  }
+  setTimeout(function(){
+    var sec = document.getElementById('policies');
+    if(sec) sec.scrollIntoView({behavior:'smooth'});
+  }, 50);
+}
+
+// ─── MODAL ───
+const plans = {
+  silver:{
+    name:'Silver Plan',
+    icon:'🥈',
+    desc:'1 User · 1 Year',
+    orig:'₹240',
+    curr:'₹120',
+    features:['1 User License','1 Year Validity','All Features Unlocked','File Upload Enabled','Excel & JSON Export','Email Support'],
+    // REPLACE these placeholder links with your actual Razorpay payment links
+    link:'https://rzp.io/l/gstsyncpro-silver'
+  },
+  golden:{
+    name:'Golden Plan',
+    icon:'🥇',
+    desc:'Up to 5 Users · 1 Year',
+    orig:'₹480',
+    curr:'₹240',
+    features:['Up to 5 Users','1 Year Validity','All Features Unlocked','File Upload Enabled','Excel & JSON Export','Priority Support'],
+    link:'https://rzp.io/l/gstsyncpro-golden'
+  },
+  lifetime:{
+    name:'Lifetime Plan',
+    icon:'💎',
+    desc:'Up to 3 Users · Lifetime',
+    orig:'₹10,000',
+    curr:'₹5,000',
+    features:['Up to 3 Users','Lifetime Validity','All Features Unlocked','All Future Updates','File Upload Enabled','Priority Support Forever'],
+    link:'https://rzp.io/l/gstsyncpro-lifetime'
+  }
+};
+
+function openModal(plan){
+  const p = plans[plan];
+  document.getElementById('modal-body').innerHTML = `
+    <div class="plan-tag">${p.icon} ${p.name}</div>
+    <h3>Complete Your Purchase</h3>
+    <div class="modal-price-row">
+      <span class="orig">${p.orig}</span>
+      <span class="curr">${p.curr}</span>
+      <span class="badge">50% OFF</span>
+    </div>
+    <ul class="modal-features">
+      ${p.features.map(f=>`<li>${f}</li>`).join('')}
+    </ul>
+    <button class="pay-btn" onclick="goToPay('${plan}')">
+      💳 Pay ${p.curr} — Secure Checkout →
+    </button>
+    <div class="modal-upi-note">
+      ⚠️ <strong>50% discount valid only for UPI, Wallet & Net Banking.</strong><br>
+      Select UPI / Net Banking at checkout to get the discounted price.
+    </div>
+    <p class="modal-note" style="margin-top:12px">
+      🔒 Secure payment via Razorpay &nbsp;|&nbsp; License key sent to your email instantly<br>
+      <strong>Questions?</strong> WhatsApp us at +91 6354030446
+    </p>
+  `;
+  document.getElementById('payModal').classList.add('open');
+}
+
+function goToPay(plan){
+  // Opens the Razorpay payment link in a new tab
+  // REPLACE the links in the `plans` object above with your real Razorpay links
+  window.open(plans[plan].link, '_blank');
+}
+
+function closeModal(){
+  document.getElementById('payModal').classList.remove('open');
+}
+
+document.getElementById('payModal').addEventListener('click', function(e){
+  if(e.target === this) closeModal();
+});
+
+
+
+// ─── CONTACT FORM ───
+function submitForm(){
+  var name = document.getElementById('cf-name').value.trim();
+  var email = document.getElementById('cf-email').value.trim();
+  var subject = document.getElementById('cf-subject').value;
+  var msg = document.getElementById('cf-msg').value.trim();
+  if(!name || !email || !subject || !msg){
+    showToast('⚠️ Please fill all fields before submitting.');
+    return;
+  }
+  var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nSubject: ' + subject + '\n\nMessage:\n' + msg);
+  window.location.href = 'mailto:Infitaxsolution@gmail.com?subject=' + encodeURIComponent('GSTSyncPro: ' + subject) + '&body=' + body;
+  showToast('✅ Opening your email client...');
+}
+
+// ─── TOAST ───
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3500);
+}
+
+// ─── SMOOTH NAV ───
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var href = a.getAttribute('href');
+    if(href === '#') return;
+    var target = document.querySelector(href);
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
