@@ -300,7 +300,7 @@ footer{background:#071a0f;color:rgba(255,255,255,.6);padding:50px 5% 30px}
       <h1>Smart GSTR-2B<br><span>Reconciliation</span><br>in Minutes</h1>
       <p class="hero-sub">GSTSyncPro reconciles your GSTR-2B Purchase & CN/DN data with Books of Accounts using advanced multi-pass matching — directly inside Chrome.</p>
       <div class="hero-actions">
-        <a href="https://chrome.google.com/webstore" target="_blank" class="btn-primary">🔗 Add to Chrome — Free Trial</a>
+        <a href="https://infitaxsolution.github.io/GstSynPro/" target="_blank" class="btn-primary">🔗 Add to Chrome — Free Trial</a>
         <a href="#pricing" class="btn-secondary">View Plans →</a>
       </div>
       <div class="hero-stats">
@@ -461,7 +461,7 @@ footer{background:#071a0f;color:rgba(255,255,255,.6);padding:50px 5% 30px}
     <div class="trial-box">
       <h3>🆓 Try Before You Buy</h3>
       <p>Install GSTSyncPro free — all features are fully enabled. File uploads are locked until you activate a license. Use the preloaded sample data to explore the full reconciliation workflow.</p>
-      <a href="https://chrome.google.com/webstore" target="_blank" class="btn-primary" style="display:inline-block">Add to Chrome — Free</a>
+      <a href="https://infitaxsolution.github.io/GstSynPro/" target="_blank" class="btn-primary" style="display:inline-block">Add to Chrome — Free</a>
     </div>
   </div>
 </section>
@@ -689,7 +689,7 @@ footer{background:#071a0f;color:rgba(255,255,255,.6);padding:50px 5% 30px}
           <div class="c-icon">🌐</div>
           <div>
             <div class="c-label">Website</div>
-            <div class="c-val"><a href="https://infitaxsolution.wixsite.com/gstsyncpro" target="_blank">infitaxsolution.wixsite.com/gstsyncpro</a></div>
+            <div class="c-val"><a href="https://infitaxsolution.github.io/GstSynPro/" target="_blank">https://infitaxsolution.github.io/GstSynPro/</a></div>
           </div>
         </div>
         <div class="contact-item">
@@ -764,8 +764,8 @@ footer{background:#071a0f;color:rgba(255,255,255,.6);padding:50px 5% 30px}
         <h4>Contact</h4>
         <a href="mailto:Infitaxsolution@gmail.com">Email Us</a>
         <a href="https://wa.me/916354030446" target="_blank">WhatsApp</a>
-        <a href="https://infitaxsolution.wixsite.com/gstsyncpro" target="_blank">Wix Site</a>
-        <a href="https://chrome.google.com/webstore" target="_blank">Chrome Web Store</a>
+        <a href="https://infitaxsolution.github.io/GstSynPro/" target="_blank">WebSite</a>
+        <a href="https://infitaxsolution.github.io/GstSynPro/" target="_blank">Chrome Web Store</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -828,7 +828,7 @@ const plans = {
     curr:'₹120',
     features:['1 User License','1 Year Validity','All Features Unlocked','File Upload Enabled','Excel & JSON Export','Email Support'],
     // REPLACE these placeholder links with your actual Razorpay payment links
-    link:'https://rzp.io/l/gstsyncpro-silver'
+    link:'https://pages.razorpay.com/infitaxsolutionsilverplan'
   },
   golden:{
     name:'Golden Plan',
@@ -837,7 +837,7 @@ const plans = {
     orig:'₹480',
     curr:'₹240',
     features:['Up to 5 Users','1 Year Validity','All Features Unlocked','File Upload Enabled','Excel & JSON Export','Priority Support'],
-    link:'https://rzp.io/l/gstsyncpro-golden'
+    link:'https://pages.razorpay.com/infitaxsolutiongoldplan'
   },
   lifetime:{
     name:'Lifetime Plan',
@@ -846,7 +846,7 @@ const plans = {
     orig:'₹10,000',
     curr:'₹5,000',
     features:['Up to 3 Users','Lifetime Validity','All Features Unlocked','All Future Updates','File Upload Enabled','Priority Support Forever'],
-    link:'https://rzp.io/l/gstsyncpro-lifetime'
+    link:'https://pages.razorpay.com/infitaxsolutionlifetimeplan'
   }
 };
 
@@ -926,6 +926,60 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
   });
 });
+
+function submitForm() {
+  var name = document.getElementById("cf-name").value.trim();
+  var email = document.getElementById("cf-email").value.trim();
+  var subject = document.getElementById("cf-subject").value;
+  var message = document.getElementById("cf-msg").value.trim();
+
+  if (!name || !email || !subject || !message) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  var btn = document.querySelector(".submit-btn");
+  var originalText = btn.textContent;
+  btn.textContent = "Sending...";
+  btn.disabled = true;
+  btn.style.opacity = "0.6";
+
+  // 🔽 PASTE YOUR GOOGLE APPS SCRIPT URL BELOW 🔽
+  var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJiU51YEFET6U1j7fEmSwEoR7GS8l1vZtemKbVVQXcOVD97GehFWDuCNRba6anPqT26g/exec";
+
+  var params = "?name=" + encodeURIComponent(name) +
+               "&email=" + encodeURIComponent(email) +
+               "&subject=" + encodeURIComponent(subject) +
+               "&message=" + encodeURIComponent(message);
+
+  var url = GOOGLE_SCRIPT_URL + params;
+
+  var img = new Image();
+
+  img.onload = function() {
+    alert("✅ Message sent successfully! We'll get back to you soon.");
+    document.getElementById("cf-name").value = "";
+    document.getElementById("cf-email").value = "";
+    document.getElementById("cf-subject").value = "";
+    document.getElementById("cf-msg").value = "";
+    btn.textContent = originalText;
+    btn.disabled = false;
+    btn.style.opacity = "1";
+  };
+
+  img.onerror = function() {
+    alert("✅ Message sent successfully! We'll get back to you soon.");
+    document.getElementById("cf-name").value = "";
+    document.getElementById("cf-email").value = "";
+    document.getElementById("cf-subject").value = "";
+    document.getElementById("cf-msg").value = "";
+    btn.textContent = originalText;
+    btn.disabled = false;
+    btn.style.opacity = "1";
+  };
+
+  img.src = url;
+}
 </script>
 </body>
 </html>
