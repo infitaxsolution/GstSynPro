@@ -5,13 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GSTSyncPro – Advanced GSTR-2B Reconciliation | Infitax Solution</title>
 <meta name="description" content="GSTSyncPro by Infitax Solution — powerful Chrome extension for GSTR-2B vs Books reconciliation. Trusted by GST professionals across India.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="keywords" content="GSTR-2B reconciliation, GST reconciliation tool, ITC reconciliation, Chrome extension GST, CA firm GST tool, Infitax Solution, GSTSyncPro, GSTR 2B matching, purchase reconciliation, credit note debit note matching">
+<link rel="canonical" href="https://www.infitaxsolution.com/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Infitax Solution">
+<meta property="og:title" content="GSTSyncPro – Advanced GSTR-2B Reconciliation | Infitax Solution">
+<meta property="og:description" content="GSTSyncPro by Infitax Solution — powerful Chrome extension for GSTR-2B vs Books reconciliation. Trusted by GST professionals across India.">
+<meta property="og:url" content="https://www.infitaxsolution.com/">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GSTSyncPro – Advanced GSTR-2B Reconciliation | Infitax Solution">
+<meta name="twitter:description" content="GSTSyncPro by Infitax Solution — powerful Chrome extension for GSTR-2B vs Books reconciliation. Trusted by GST professionals across India.">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a4f2e'/><text x='50' y='72' font-size='60' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>I</text></svg>">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Infitax Solution",
+  "url": "https://www.infitaxsolution.com",
+  "description": "Makers of GSTSyncPro — advanced GSTR-2B reconciliation tool for Indian GST professionals.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kachchh",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "info@Infitaxsolution.com",
+    "telephone": "+91-6354030446",
+    "contactType": "customer support"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GSTSyncPro",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Chrome",
+  "description": "GSTR-2B reconciliation Chrome extension with 3-pass purchase matching and 6-pass CN/DN matching. 100% local processing.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Silver Plan",
+      "price": "150",
+      "priceCurrency": "INR",
+      "priceValidUntil": "2026-12-31"
+    },
+    {
+      "@type": "Offer",
+      "name": "Gold Plan",
+      "price": "350",
+      "priceCurrency": "INR",
+      "priceValidUntil": "2026-12-31"
+    },
+    {
+      "@type": "Offer",
+      "name": "Platinum Plan",
+      "price": "5000",
+      "priceCurrency": "INR",
+      "priceValidUntil": "2026-12-31"
+    }
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "Infitax Solution"
+  }
+}
+</script>
 </head>
 <body>
+<header>
 <nav>
   <div class="nav-inner">
-    <a href="" class="nav-logo">
+    <a href="/" class="nav-logo">
       <div class="logo-icon">I</div>
       <div class="logo-text">
         <span class="logo-brand">Infitax Solution</span>
@@ -25,12 +102,12 @@
       <li><a href="faq/" data-nav="faq">FAQ</a></li>
       <li><a href="contact/" data-nav="contact">Contact</a></li>
       <li><a href="products/" data-nav="products" class="nav-products">Other Products</a></li>
-      
     </ul>
     <a href="pricing/" class="nav-cta">Buy License</a>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu"><span></span><span></span><span></span></div>
   </div>
 </nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="features/" onclick="toggleMenu()">Features</a>
   <a href="how-it-works/" onclick="toggleMenu()">How it Works</a>
@@ -41,6 +118,7 @@
   <a href="pricing/" onclick="toggleMenu()" style="color:var(--green-mid);font-weight:700;margin-top:8px">&#128273; Buy License</a>
 </div>
 
+<main>
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-inner">
@@ -49,7 +127,7 @@
       <h1 class="hero-h1">Smart GSTR-2B<br><span>Reconciliation</span><br>in Minutes</h1>
       <p class="hero-sub">GSTSyncPro reconciles your GSTR-2B Purchase &amp; CN/DN data with Books of Accounts using advanced multi-pass matching &#8212; directly inside Chrome.</p>
       <div class="hero-actions">
-        <a href="https://infitaxsolution.github.io/GstSynPro/" target="_blank" class="btn-primary">&#128279; Add to Chrome &#8212; Free Trial</a>
+        <a href="https://infitaxsolution.github.io/GstSynPro/" target="_blank" rel="noopener noreferrer" class="btn-primary">&#128279; Add to Chrome &#8212; Free Trial</a>
         <a href="pricing/" class="btn-secondary">View Plans &#8594;</a>
       </div>
       <div class="hero-stats">
@@ -157,9 +235,10 @@
   <div class="section-inner">
     <h2>Try GSTSyncPro Free Today</h2>
     <p>Install the Chrome extension, explore with sample data, and upgrade when you're ready. No credit card required.</p>
-    <a href="https://www.infitaxsolution.com/" target="_blank" class="btn-white">&#128279; Add to Chrome &#8212; Free</a>
+    <a href="https://www.infitaxsolution.com/" target="_blank" rel="noopener noreferrer" class="btn-white">&#128279; Add to Chrome &#8212; Free</a>
   </div>
 </div>
+</main>
 
 <footer>
   <div class="footer-inner">
@@ -191,9 +270,9 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="mailto:info@Infitaxsolution.com">Email Us</a>
-        <a href="https://wa.me/916354030446" target="_blank">WhatsApp</a>
+        <a href="https://wa.me/916354030446" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href="products/">Other Products</a>
-        <a href="https://www.infitaxsolution.com/" target="_blank">Chrome Extension</a>
+        <a href="https://www.infitaxsolution.com/" target="_blank" rel="noopener noreferrer">Chrome Extension</a>
       </div>
     </div>
     <div class="footer-bottom">
