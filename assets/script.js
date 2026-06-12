@@ -51,13 +51,13 @@ var plans = {
     name: 'Silver Plan', icon: '🥈', desc: '1 User · 1 Year',
     orig: '₹300', curr: '₹150',
     features: ['1 User License', '1 Year Validity', 'All Features Unlocked', 'File Upload Enabled', 'Excel & JSON Export', 'Email Support', 'Price inclusive of GST'],
-    link: 'https://rzp.io/rzp/infitaxsolutionsilverplans'
+    link: 'https://pages.razorpay.com/infitaxsolutionsilverplans'
   },
   gold: {
     name: 'Gold Plan', icon: '🥇', desc: 'Up to 5 Users · 1 Year',
     orig: '₹700', curr: '₹350',
     features: ['Up to 5 Users', '1 Year Validity', 'All Features Unlocked', 'File Upload Enabled', 'Excel & JSON Export', 'Priority Email Support', 'Price inclusive of GST'],
-    link: 'https://rzp.io/rzp/infitaxsolutiongoldplans'
+    link: 'https://pages.razorpay.com/infitaxsolutiongoldplans'
   },
   platinum: {
     name: 'Platinum Plan', icon: '💎', desc: 'Up to 3 Users · Lifetime',
