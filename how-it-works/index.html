@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Reconcile GST & GSTR-2B with GSTSyncPro</title>
-<meta name="description" content="Learn how GSTSyncPro reconciles GSTR-2B with Books for GST returns in 4 steps: upload, auto-match, review, and export. 100% local processing.">
-<meta name="keywords" content="gst, gstr2b, gstr3b, gst reconcilation, gst return, GSTR-2B reconciliation, GST reconciliation tool, ITC reconciliation, Chrome extension GST, CA firm GST tool, Infitax Solution, GSTSyncPro, GSTR 2B matching, purchase reconciliation, credit note debit note matching">
+<title>How to Reconcile GST, GSTR-2B &amp; IMS with GSTSyncPro</title>
+<meta name="description" content="Learn how GSTSyncPro reconciles GSTR-2B and IMS with Books for GST returns in 4 steps: upload, auto-match, review, and export. 100% local processing.">
+<meta name="keywords" content="gst, gstr2b, gstr3b, ims, gst reconcilation, gst return, GSTR-2B reconciliation, IMS reconciliation, GST reconciliation tool, ITC reconciliation, Chrome extension GST, CA firm GST tool, Infitax Solution, GSTSyncPro, GSTR 2B matching, purchase reconciliation, credit note debit note matching">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
@@ -16,7 +16,7 @@
       <div class="logo-icon">I</div>
       <div class="logo-text">
         <span class="logo-brand">Infitax Solution</span>
-        <span class="logo-sub">GSTSyncPro — GSTR-2B Reconciler</span>
+        <span class="logo-sub">GSTSyncPro — GSTR-2B &amp; IMS Reconciler</span>
       </div>
     </a>
     <ul class="nav-links">
@@ -52,23 +52,23 @@
   <div class="steps">
     <div class="step-card">
       <div class="step-num">1</div>
-      <h3>Upload 4 Files</h3>
-      <p>Open GSTSyncPro in Chrome and drag &amp; drop (or click to browse) your four data files: GSTR-2B Purchase data, Books Purchase register, GSTR-2B CN/DN data, and Books CN/DN register. Supported formats: Excel (.xlsx, .xls) and CSV.</p>
+      <h3>Upload Files</h3>
+      <p>Open GSTSyncPro in Chrome and upload your data files: GSTR-2B or IMS Purchase data, Books Purchase register, GSTR-2B/IMS CN/DN data, and Books CN/DN register. Supported formats: Excel (.xlsx, .xls) and CSV. Comma formatting in amount columns is stripped automatically to ensure perfect numeric matching.</p>
     </div>
     <div class="step-card">
       <div class="step-num">2</div>
       <h3>Auto-Reconcile</h3>
-      <p>Click "Reconcile" and GSTSyncPro automatically runs a <strong>3-pass purchase matching algorithm</strong> (Exact &#8594; Fuzzy &#8594; Amount-based) and a <strong>6-pass CN/DN matching algorithm</strong> (Cross-type + Same-type). Each pass catches records the previous pass missed.</p>
+      <p>Toggle the mode between <strong>GSTR-2B vs Books</strong> and <strong>IMS vs Books</strong>. Click "Reconcile" to run our <strong>3-pass purchase matching</strong> (with comma-cleaning for amount precision) and <strong>6-pass CN/DN matching</strong> algorithms.</p>
     </div>
     <div class="step-card">
       <div class="step-num">3</div>
       <h3>Review &amp; Act</h3>
-      <p>Review each record in the results table. Use per-record actions — <em>Accept</em> matched pairs, <em>Unmatch</em> incorrect pairs, manually <em>Pair</em> records, <em>Force Pair</em> with overrides, or mark as <em>Not Matched</em>. Bulk select-all and GSTIN-filter make large datasets manageable.</p>
+      <p>Review each record in the results table. Use per-record actions — <em>Accept</em> matched pairs, manually <em>Pair</em> or <em>Force Pair</em>. In IMS mode, filter by IMS Status (Pending, Accepted, Rejected) or supplier GSTIN for rapid validation.</p>
     </div>
     <div class="step-card">
       <div class="step-num">4</div>
-      <h3>Export Results for GST Returns</h3>
-      <p>When done, export your reconciliation as a formatted <strong>Excel file</strong> for filing, a <strong>JSON file</strong> for ERP integration, or use the <em>Copy ITC Summary</em> button to paste the net claimable ITC figure directly into your GSTR-3B workflow.</p>
+      <h3>Export Results</h3>
+      <p>When done, export your reconciliation as a formatted <strong>Excel file</strong>, a portal-ready <strong>IMS JSON file</strong> to upload actions back in bulk, or use the <em>Copy ITC Summary</em> button for GSTR-3B filings.</p>
     </div>
   </div>
 
@@ -91,7 +91,7 @@
             <div style="color:#22c55e;font-size:11px;font-weight:600;letter-spacing:.3px">Makers of GSTSyncPro</div>
           </div>
         </div>
-        <p>GSTSyncPro — advanced GSTR-2B reconciliation tool for Indian tax professionals. Kachchh, Gujarat, India.</p>
+        <p>GSTSyncPro — advanced GSTR-2B &amp; IMS reconciliation tool for Indian tax professionals. Kachchh, Gujarat, India.</p>
       </div>
       <div class="footer-col">
         <h4>Product</h4>
