@@ -335,10 +335,10 @@ footer{background:#071a0f;color:rgba(255,255,255,.8);padding:50px 5% 30px}
 }
 
 /* ── FOOTER BRAND (extracted from inline styles) ── */
-.footer-brand-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.footer-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#0a4f2e,#22c55e);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px}
-.footer-brand-name{color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:17px}
-.footer-brand-sub{color:#22c55e;font-size:11px;font-weight:600;letter-spacing:.3px}
+.footer-brand-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.footer-logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#0a4f2e,#22c55e);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;flex-shrink:0;box-shadow:0 4px 12px rgba(34,197,94,0.2)}
+.footer-brand-name{color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;line-height:1.2}
+.footer-brand-sub{color:#22c55e;font-size:12px;font-weight:600;letter-spacing:.5px;margin-top:2px}
 
 /* ── HAMBURGER BUTTON (was div, now button) ── */
 .hamburger span{display:block;width:24px;height:2px;background:var(--green-deep);border-radius:2px;transition:.3s}
