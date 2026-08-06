@@ -3,13 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ — GSTSyncPro GST Reconciliation & Returns</title>
-<meta name="description" content="Frequently asked questions about GSTSyncPro: GSTR-2B, GSTR-3B matching, GST returns, data privacy, and more.">
-<meta name="keywords" content="gst, gstr2b, gstr3b, gst reconcilation, gst return, GSTR-2B reconciliation, GST reconciliation tool, ITC reconciliation, Chrome extension GST, CA firm GST tool, Infitax Solution, GSTSyncPro, GSTR 2B matching, purchase reconciliation, credit note debit note matching">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>FAQ — GSTSyncPro v1.0.4 GST &amp; IMS Reconciliation</title>
+<meta name="description" content="Frequently asked questions about GSTSyncPro v1.0.4: As-Is GST Portal file upload, Side-by-Side matching, IMS JSON export, PDF reports, licensing, and 100% browser local privacy.">
+<link rel="canonical" href="https://www.infitaxsolution.com/faq/">
+<!-- Security & Rating Metadata -->
+<meta name="rating" content="General">
+<meta name="classification" content="Business &amp; Finance, Tax Software, Chrome Extensions">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are GST Portal files uploaded as-is or do they require formatting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GST Portal files (GSTR-2B or IMS downloads) are uploaded completely as-is without editing in 2-Files Mode. In 4-Files Mode, standard template headers are required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What headers or template are required for the Books purchase file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your Books purchase file should contain standard Tally or ERP column headers (such as Supplier GSTIN, Invoice Number, Invoice Date, Taxable Value, CGST, SGST, IGST, Total Invoice Value). You can also use our ready-made template format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between 2-Files Mode and 4-Files Mode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2-Files Mode allows direct as-is GST Portal file uploads paired with 1 Books purchase file. 4-Files Mode allows separate Purchase and Credit/Debit Note files using standard template column headers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does automated Accept / Pending action assignment work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When you click Reconcile, matched records are automatically marked as Accept. Unmatched or mismatched entries default to Pending, and not-filed items are ignored. You can also use manual Pair, Force Pair, and Unmatch buttons whenever custom overrides are needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I upload the exported IMS JSON file to the GST Portal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Export the IMS Action JSON file from GSTSyncPro, log in to the official GST Portal, go to Services > Returns > Invoice Management System (IMS) Dashboard > Offline Upload, and upload the generated JSON file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does GSTSyncPro support PDF report exports?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Version 1.0.4 includes direct PDF report generation, enabling you to export clean, printable reconciliation summaries alongside formatted Excel (.xlsx) spreadsheets and portal JSON files."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data safe? Does it upload anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your financial data never leaves your device. GSTSyncPro processes all files 100% locally inside your Chrome browser. No GST data, GSTINs, or invoice details are ever transmitted to external servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I test drive GSTSyncPro with sample data for free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! GSTSyncPro includes a sample-data trial mode so you can test all side-by-side reconciliation views, status filters, and report exports before activating a license."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.infitaxsolution.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "FAQ",
+      "item": "https://www.infitaxsolution.com/faq/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <nav>
   <div class="nav-inner">
     <a href="../" class="nav-logo">
@@ -26,10 +125,9 @@
       <li><a href="../faq/" data-nav="faq">FAQ</a></li>
       <li><a href="../contact/" data-nav="contact">Contact</a></li>
       <li><a href="../products/" data-nav="products" class="nav-products">Other Products</a></li>
-      
     </ul>
     <a href="../pricing/" class="nav-cta">Buy License</a>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
@@ -41,58 +139,62 @@
   <a href="../products/" onclick="toggleMenu()">Other Products</a>
   <a href="../pricing/" onclick="toggleMenu()" style="color:var(--green-mid);font-weight:700;margin-top:8px">&#128273; Buy License</a>
 </div>
-<div class="page-header">
+<div class="page-header" id="main-content">
   <div class="section-inner">
     <div class="section-label">Frequently Asked Questions</div>
-    <h1>Got Questions? We Have Answers.</h1>
-    <p>Everything you need to know about GSTSyncPro, licensing, data privacy, and support.</p>
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about GSTSyncPro v1.0.4, 2-Files Mode as-is portal upload, 4-Files Mode template headers, side-by-side matching, and privacy.</p>
   </div>
 </div>
 <div class="page-inner">
   <div class="faq-list">
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">What is the difference between the plans? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">Silver is for 1 user for 1 year (&#8377;150 incl. GST). Gold is for up to 5 users for 1 year (&#8377;350 incl. GST). All plans unlock the same features &#8212; only user count differ. All prices shown are after the 50% launch discount.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What is the Side-by-Side View used for? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">The Side-by-Side view is specifically designed for reviewing and manually pairing non-matched / pending transactions. Matched entries are automatically assigned Accept status, while unmatched transactions remain Pending in the side-by-side table so you can perform manual Pair, Force Pair, or Unmatch overrides.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">How do I activate my license? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">After purchase, you will receive your license key via email at the address you provide during checkout. Open the GSTSyncPro extension, go to the Activate License screen, enter your email and license key, and click Verify &amp; Activate.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Are GST Portal files uploaded as-is or do they require formatting? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">GST Portal files (GSTR-2B or IMS downloads) are uploaded completely as-is without editing <strong>ONLY in 2-Files Mode</strong>. In <strong>4-Files Mode</strong>, standard template headers are required for both Portal and Books files.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Is my data safe? Does it upload anywhere? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">Your financial data never leaves your device. GSTSyncPro processes all files locally inside your browser. Only license validation communicates with our server &#8212; no GST data, GSTIN, or invoice data is ever transmitted.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What headers or template are required for the Books purchase file? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">Your Books purchase file should contain standard Tally or ERP column headers (such as Supplier GSTIN, Invoice Number, Invoice Date, Taxable Value, CGST, SGST, IGST, Total Invoice Value). You can also use our standard template format.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Is the 50% discount available on all payment methods? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">Yes &#8212; the 50% launch discount applies to <strong>all payment methods</strong>: UPI, Credit Card, Debit Card, Net Banking, Wallets, and more. All prices shown on the site are already after the discount and inclusive of GST. No coupon code needed.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What is the difference between 2-Files Mode and 4-Files Mode? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a"><strong>2-Files Mode</strong> allows direct as-is GST Portal file uploads paired with 1 Books purchase file. <strong>4-Files Mode</strong> allows separate Purchase and Credit/Debit Note files using standard template column headers for both Portal and Books.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">What file formats are supported for upload? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">GSTSyncPro supports Excel (.xlsx, .xls) and CSV formats for all file types &#8212; GSTR-2B/IMS Purchase, Books Purchase, GSTR-2B/IMS CN/DN, and Books CN/DN. Commas in amounts are automatically handled and stripped during parsing.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What is the difference between Pair and Force Pair? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a"><strong>Pair</strong> matches entries with identical or matching values. <strong>Force Pair</strong> allows you to manually force a match between non-matched entries even if minor invoice number, date, or amount discrepancies exist.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">What is IMS vs Books mode and how does it help? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">IMS (Invoice Management System) is the GST portal's dashboard for managing vendor invoices. GSTSyncPro's IMS vs Books mode allows you to reconcile Books directly with the IMS data download, match invoices, filter by status (Pending, Accepted, Rejected), and export an IMS JSON file to update your decisions back to the GST portal.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Where can I rate and review GSTSyncPro? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">You can rate and write a review directly on the official <a href="https://chromewebstore.google.com/detail/aaclnkpbjahikebmjbdmiamlgdohfobl?utm_source=item-share-cb" target="_blank" style="color:var(--green-mid);font-weight:700">Chrome Web Store Store Listing Page</a>. We appreciate your feedback!</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Can I get a refund? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">Refunds are only considered for proven technical deficiencies or service failures caused by Infitax Solution that cannot be resolved within 7 working days. Refunds are <strong>not available</strong> for change of mind, user-side compatibility issues, or general dissatisfaction. Annual plan requests must be raised within 7 days of purchase. See our full <a href="../policies/refund/">Refund Policy</a> or email <a href="mailto:info@infitaxsolution.com">info@infitaxsolution.com</a>.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">How do I upload the exported IMS JSON file to the GST Portal? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">Export the IMS Action JSON file from GSTSyncPro, log in to the GST Portal, navigate to Services &gt; Returns &gt; Invoice Management System (IMS) Dashboard &gt; Offline Upload, and upload the generated JSON file.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Does GSTSyncPro work offline? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">Yes &#8212; reconciliation, matching, and export all work offline. An internet connection is only needed during initial license activation and periodic validation checks.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Does GSTSyncPro support PDF report exports? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">Yes! Version 1.0.4 includes direct PDF report generation, enabling you to export clean, printable reconciliation summaries alongside formatted Excel (.xlsx) spreadsheets and portal JSON files.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">How long does reconciliation take? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">For most datasets (up to a few thousand records), GSTSyncPro completes all matching passes in under 10 seconds. Performance depends on your computer and browser, but it is significantly faster than manual spreadsheet reconciliation.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is my data safe? Does it upload anywhere? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">Your financial data never leaves your device. GSTSyncPro processes all files 100% locally inside your browser. Only license validation communicates with our server &#8212; no GST data, GSTINs, or invoice details are ever transmitted.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Can I use the extension on multiple computers? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">Each license is tied to the number of users &#8212; Silver (1 user), Gold (up to 5 users). You can install the extension on multiple devices, but only the licensed number of concurrent users may use file upload features.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What is the difference between Silver and Gold plans? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">Silver is for 1 user for 1 year (&#8377;150 incl. GST). Gold is for up to 5 users for 1 year (&#8377;350 incl. GST). All plans unlock all v1.0.4 features &#8212; only user count differs. All prices shown are inclusive of GST after the 50% launch discount.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">How does this help with my GST return and GSTR-3B filing? <span class="faq-arrow">&#9660;</span></div>
-    <div class="faq-a">By automating GSTR-2B reconciliation, GSTSyncPro gives you an exact ITC summary. This net claimable ITC figure is what you need for accurate GSTR-3B preparation, ensuring your GST returns are filed quickly and without errors.</div>
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Can I test drive GSTSyncPro with sample data for free? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">Yes! GSTSyncPro includes a sample-data trial mode so you can test all side-by-side reconciliation views, status filters, and report exports before activating a license.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">How long does reconciliation take? <span class="faq-arrow">&#9660;</span></button>
+    <div class="faq-a">For most datasets (up to a few thousand records), GSTSyncPro completes matching in under 10 seconds. Performance depends on your computer and browser, but it is significantly faster than manual spreadsheet matching.</div>
   </div>
   </div>
   <div style="text-align:center;margin-top:50px;padding:36px;background:var(--green-pale);border-radius:20px;border:1px solid var(--green-light)">
@@ -106,11 +208,11 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-          <div style="width:36px;height:36px;background:linear-gradient(135deg,#0a4f2e,#22c55e);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:Syne,sans-serif;font-weight:800;font-size:15px">I</div>
+        <div class="footer-brand-row">
+          <div class="footer-logo-icon">I</div>
           <div>
-            <div style="color:#fff;font-family:Syne,sans-serif;font-weight:800;font-size:17px">Infitax Solution</div>
-            <div style="color:#22c55e;font-size:11px;font-weight:600;letter-spacing:.3px">Makers of GSTSyncPro</div>
+            <div class="footer-brand-name">Infitax Solution</div>
+            <div class="footer-brand-sub">Makers of GSTSyncPro</div>
           </div>
         </div>
         <p>GSTSyncPro — advanced GSTR-2B &amp; IMS reconciliation tool for Indian tax professionals. Kachchh, Gujarat, India.</p>
@@ -145,6 +247,6 @@
 </footer>
 
 <div class="toast" id="toast"></div>
-<script src="../assets/script.js"></script>
+<script src="../assets/script.js" defer></script>
 </body>
 </html>

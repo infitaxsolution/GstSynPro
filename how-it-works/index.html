@@ -3,13 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Reconcile GST, GSTR-2B &amp; IMS with GSTSyncPro</title>
-<meta name="description" content="Learn how GSTSyncPro reconciles GSTR-2B and IMS with Books for GST returns in 4 steps: upload, auto-match, review, and export. 100% local processing.">
-<meta name="keywords" content="gst, gstr2b, gstr3b, ims, gst reconcilation, gst return, GSTR-2B reconciliation, IMS reconciliation, GST reconciliation tool, ITC reconciliation, Chrome extension GST, CA firm GST tool, Infitax Solution, GSTSyncPro, GSTR 2B matching, purchase reconciliation, credit note debit note matching">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>How GSTSyncPro v1.0.4 Works — Direct GST &amp; IMS Reconciliation</title>
+<meta name="description" content="Learn how GSTSyncPro v1.0.4 reconciles GSTR-2B and IMS with Books in 4 steps: direct as-is file upload, smart auto-match, side-by-side review, and portal JSON/PDF export. 100% local browser privacy.">
+<link rel="canonical" href="https://www.infitaxsolution.com/how-it-works/">
+<!-- Security & Rating Metadata -->
+<meta name="rating" content="General">
+<meta name="classification" content="Business &amp; Finance, Tax Software, Chrome Extensions">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.infitaxsolution.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How it Works",
+      "item": "https://www.infitaxsolution.com/how-it-works/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <nav>
   <div class="nav-inner">
     <a href="../" class="nav-logo">
@@ -26,10 +54,9 @@
       <li><a href="../faq/" data-nav="faq">FAQ</a></li>
       <li><a href="../contact/" data-nav="contact">Contact</a></li>
       <li><a href="../products/" data-nav="products" class="nav-products">Other Products</a></li>
-      
     </ul>
     <a href="../pricing/" class="nav-cta">Buy License</a>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
@@ -41,34 +68,34 @@
   <a href="../products/" onclick="toggleMenu()">Other Products</a>
   <a href="../pricing/" onclick="toggleMenu()" style="color:var(--green-mid);font-weight:700;margin-top:8px">&#128273; Buy License</a>
 </div>
-<div class="page-header">
+<div class="page-header" id="main-content">
   <div class="section-inner">
-    <div class="section-label">Simple Process</div>
-    <h1>How GSTSyncPro Automates GST Returns</h1>
-    <p>From file upload to a complete ITC summary for your GSTR-3B in four easy steps. All processing happens locally in your browser — your data never leaves your device.</p>
+    <div class="section-label">Simple 4-Step Workflow</div>
+    <h1>How GSTSyncPro Reconciliation Works</h1>
+    <p>From as-is portal file upload in 2-Files Mode to side-by-side review, complete ITC summary, and 1-click GST portal JSON export. All processing happens 100% locally inside Chrome.</p>
   </div>
 </div>
 <div class="page-inner">
   <div class="steps">
     <div class="step-card">
       <div class="step-num">1</div>
-      <h3>Upload Files</h3>
-      <p>Open GSTSyncPro in Chrome and upload your data files: GSTR-2B or IMS Purchase data, Books Purchase register, GSTR-2B/IMS CN/DN data, and Books CN/DN register. Supported formats: Excel (.xlsx, .xls) and CSV. Comma formatting in amount columns is stripped automatically to ensure perfect numeric matching.</p>
+      <h3>Select Upload Mode (2-Files or 4-Files)</h3>
+      <p>Open GSTSyncPro in Chrome. In <strong>2-Files Mode</strong>, upload your GST Portal file (GSTR-2B / IMS) completely <strong>as-is</strong> without editing, alongside your Books file. In <strong>4-Files Mode</strong>, use standard template column headers for separate Purchase and Credit/Debit Note files.</p>
     </div>
     <div class="step-card">
       <div class="step-num">2</div>
-      <h3>Auto-Reconcile</h3>
-      <p>Toggle the mode between <strong>GSTR-2B vs Books</strong> and <strong>IMS vs Books</strong>. Click "Reconcile" to run our <strong>3-pass purchase matching</strong> (with comma-cleaning for amount precision) and <strong>6-pass CN/DN matching</strong> algorithms.</p>
+      <h3>Smart Auto-Matching</h3>
+      <p>Select <strong>GSTR-2B vs Books</strong> or <strong>IMS vs Books</strong> mode and click Reconcile. GSTSyncPro runs multi-pass auto-matching algorithms with clean comma parsing for exact amount precision.</p>
     </div>
     <div class="step-card">
       <div class="step-num">3</div>
-      <h3>Review &amp; Act</h3>
-      <p>Review each record in the results table. Use per-record actions — <em>Accept</em> matched pairs, manually <em>Pair</em> or <em>Force Pair</em>. In IMS mode, filter by IMS Status (Pending, Accepted, Rejected) or supplier GSTIN for rapid validation.</p>
+      <h3>Side-by-Side Pairing Review</h3>
+      <p>Review unmatched and pending entries side-by-side in Chrome. Auto-matched transactions are processed as Accept, while unmatched entries default to Pending in the side-by-side view specifically for manual Pair, Force Pair, or Unmatch overrides. Not-filed entries are ignored.</p>
     </div>
     <div class="step-card">
       <div class="step-num">4</div>
-      <h3>Export Results</h3>
-      <p>When done, export your reconciliation as a formatted <strong>Excel file</strong>, a portal-ready <strong>IMS JSON file</strong> to upload actions back in bulk, or use the <em>Copy ITC Summary</em> button for GSTR-3B filings.</p>
+      <h3>1-Click Export</h3>
+      <p>Export your reconciliation as a portal-compliant <strong>IMS Action JSON file</strong> for direct GST Portal upload, formatted <strong>Excel sheets</strong> for office records, and print-ready <strong>PDF reports</strong> for clients.</p>
     </div>
   </div>
 
@@ -84,11 +111,11 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-          <div style="width:36px;height:36px;background:linear-gradient(135deg,#0a4f2e,#22c55e);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:Syne,sans-serif;font-weight:800;font-size:15px">I</div>
+        <div class="footer-brand-row">
+          <div class="footer-logo-icon">I</div>
           <div>
-            <div style="color:#fff;font-family:Syne,sans-serif;font-weight:800;font-size:17px">Infitax Solution</div>
-            <div style="color:#22c55e;font-size:11px;font-weight:600;letter-spacing:.3px">Makers of GSTSyncPro</div>
+            <div class="footer-brand-name">Infitax Solution</div>
+            <div class="footer-brand-sub">Makers of GSTSyncPro</div>
           </div>
         </div>
         <p>GSTSyncPro — advanced GSTR-2B &amp; IMS reconciliation tool for Indian tax professionals. Kachchh, Gujarat, India.</p>
@@ -123,6 +150,6 @@
 </footer>
 
 <div class="toast" id="toast"></div>
-<script src="../assets/script.js"></script>
+<script src="../assets/script.js" defer></script>
 </body>
 </html>

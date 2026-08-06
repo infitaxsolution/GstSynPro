@@ -3,26 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GSTSyncPro: Advanced GST &amp; IMS Reconciliation Tool for GSTR-2B &amp; IMS | Infitax Solution</title>
-<meta name="description" content="GSTSyncPro by Infitax Solution is the ultimate GST reconciliation tool. Automate your GSTR-2B, GSTR-3B, IMS (Invoice Management System), and GST return matching directly in your Chrome browser.">
-<meta name="keywords" content="gst, gstr2b, gstr3b, ims, gst reconcilation, gst return, GSTR-2B reconciliation, IMS reconciliation, GST reconciliation tool, ITC reconciliation, Chrome extension GST, CA firm GST tool, Infitax Solution, GSTSyncPro, GSTR 2B matching, purchase reconciliation, credit note debit note matching">
+<title>GSTSyncPro v1.0.4 — Direct GST &amp; IMS Reconciliation | Infitax Solution</title>
+<meta name="description" content="GSTSyncPro v1.0.4 reconciles GST Portal Excel/CSV files as-is with Books in Chrome. Side-by-side match view, IMS vs Books, 1-click IMS JSON export & PDF reports with 100% local privacy.">
 <link rel="canonical" href="https://www.infitaxsolution.com/">
+<!-- Fortinet / Security & Rating Metadata -->
+<meta name="rating" content="General">
+<meta name="classification" content="Business &amp; Finance, Tax Software, Chrome Extensions">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Infitax Solution">
-<meta property="og:title" content="GSTSyncPro: Advanced GST &amp; IMS Reconciliation Tool for GSTR-2B &amp; IMS | Infitax Solution">
-<meta property="og:description" content="GSTSyncPro by Infitax Solution is the ultimate GST reconciliation tool. Automate your GSTR-2B, GSTR-3B, IMS (Invoice Management System), and GST return matching directly in your Chrome browser.">
+<meta property="og:title" content="GSTSyncPro v1.0.4: Direct GST &amp; IMS Reconciliation for GSTR-2B &amp; IMS | Infitax Solution">
+<meta property="og:description" content="GSTSyncPro v1.0.4 reconciles GST Portal files as-is with Books directly in Chrome. Side-by-side matching, portal-ready IMS Action JSON, PDF export, and 100% browser privacy.">
 <meta property="og:url" content="https://www.infitaxsolution.com/">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GSTSyncPro: Advanced GST &amp; IMS Reconciliation Tool for GSTR-2B &amp; IMS | Infitax Solution">
-<meta name="twitter:description" content="GSTSyncPro by Infitax Solution is the ultimate GST reconciliation tool. Automate your GSTR-2B, GSTR-3B, IMS (Invoice Management System), and GST return matching directly in your Chrome browser.">
+<meta name="twitter:title" content="GSTSyncPro v1.0.4: Direct GST &amp; IMS Reconciliation | Infitax Solution">
+<meta name="twitter:description" content="GSTSyncPro v1.0.4 reconciles GST Portal files as-is with Books directly in Chrome. Side-by-side matching, portal-ready IMS Action JSON, PDF export, and 100% browser privacy.">
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a4f2e'/><text x='50' y='72' font-size='60' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>I</text></svg>">
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <!-- Structured Data -->
 <script type="application/ld+json">
@@ -34,8 +40,10 @@
   "description": "Makers of GSTSyncPro — advanced GSTR-2B & IMS reconciliation tool for Indian GST professionals.",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Plot No 255, Shantidham 4, Varsamedi, Anjar",
     "addressLocality": "Kachchh",
     "addressRegion": "Gujarat",
+    "postalCode": "370110",
     "addressCountry": "IN"
   },
   "contactPoint": {
@@ -51,9 +59,10 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "GSTSyncPro",
+  "softwareVersion": "1.0.4",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Chrome",
-  "description": "GSTR-2B & IMS reconciliation Chrome extension with 3-pass purchase matching, 6-pass CN/DN matching, and IMS JSON output. 100% local processing.",
+  "description": "GSTR-2B & IMS reconciliation Chrome extension with as-is portal file upload, side-by-side matching view, IMS Action JSON export, and PDF export option. 100% local processing.",
   "offers": [
     {
       "@type": "Offer",
@@ -78,6 +87,7 @@
 </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <header>
 <nav>
   <div class="nav-inner">
@@ -97,7 +107,7 @@
       <li><a href="products/" data-nav="products" class="nav-products">Other Products</a></li>
     </ul>
     <a href="pricing/" class="nav-cta">Buy License</a>
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu"><span></span><span></span><span></span></div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 </header>
@@ -111,23 +121,23 @@
   <a href="pricing/" onclick="toggleMenu()" style="color:var(--green-mid);font-weight:700;margin-top:8px">&#128273; Buy License</a>
 </div>
 
-<main>
+<main id="main-content">
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge">&#127470;&#127475; By Infitax Solution &#8212; Made for Indian GST Professionals</div>
-      <h1 class="hero-h1">Smart <span>GST &amp; IMS Reconciliation</span><br>for GSTR-2B, GSTR-3B &amp; IMS<br>in Minutes</h1>
-      <p class="hero-sub">GSTSyncPro automates your GST return process by reconciling your GSTR-2B, GSTR-3B, and IMS (Invoice Management System) Purchase &amp; CN/DN data with your Books of Accounts &#8212; directly inside Chrome.</p>
+      <div class="hero-badge">&#127470;&#127475; By Infitax Solution &#8212; Version 1.0.4 Released</div>
+      <h1 class="hero-h1">Smart GST &amp; IMS Reconciliation in Minutes</h1>
+      <p class="hero-sub">Reconcile GSTR-2B &amp; IMS data directly with your Books in Chrome. <strong>2-Files Mode</strong> accepts GST Portal files directly <em>as-is</em>. <strong>4-Files Mode</strong> uses standard template headers for detailed matching.</p>
       <div class="hero-actions">
         <a href="https://chromewebstore.google.com/detail/gstsync-pro/aaclnkpbjahikebmjbdmiamlgdohfobl?hl=en-US&utm_source=ext_sidebar&pli=1" target="_blank" rel="noopener noreferrer" class="btn-primary">&#128279; Add to Chrome &#8212; Free Trial</a>
         <a href="pricing/" class="btn-secondary">View Plans &#8594;</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><div class="stat-num">3-Pass</div><div class="stat-label">Purchase Matching</div></div>
-        <div class="stat"><div class="stat-num">6-Pass</div><div class="stat-label">CN/DN Matching</div></div>
-        <div class="stat"><div class="stat-num">IMS</div><div class="stat-label">vs Books Mode</div></div>
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Local Processing</div></div>
+        <div class="stat"><div class="stat-num">As-Is</div><div class="stat-label">Portal Upload (2-Files Mode Only)</div></div>
+        <div class="stat"><div class="stat-num">Template</div><div class="stat-label">Books &amp; 4-Files Headers</div></div>
+        <div class="stat"><div class="stat-num">1-Click</div><div class="stat-label">IMS Action JSON Export</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Local Browser Privacy</div></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -135,16 +145,29 @@
       <div class="hero-card">
         <div class="card-header">
           <div class="card-dots"><span></span><span></span><span></span></div>
-          <span class="card-title">GSTR-2B &amp; IMS Reconciliation &#8212; v1.0.2</span>
+          <span class="card-title">GSTR-2B &amp; IMS Reconciliation &#8212; v1.0.4</span>
         </div>
-        <div class="match-row matched"><span>GSTIN: 24ABCDE1234F1Z5</span><span class="match-badge m">Exact Match</span></div>
-        <div class="match-row matched"><span>GSTIN: 27FGHIJ5678K2L3</span><span class="match-badge m">Fuzzy Match</span></div>
-        <div class="match-row pending"><span>GSTIN: 29MNOPQ9012R3S4</span><span class="match-badge p">Pending</span></div>
-        <div class="match-row mismatch"><span>GSTIN: 33TUVWX3456Y7Z8</span><span class="match-badge x">Mismatch</span></div>
-        <div class="match-row matched"><span>GSTIN: 24LMNOP7890Q1R2</span><span class="match-badge m">Amount Match</span></div>
-        <div class="itc-box"><div class="itc-label">Net ITC Claimable</div><div class="itc-amount">&#8377; 2,34,850.00</div></div>
+        <div class="match-row matched"><span>GSTIN: 24ABCDE1234F1Z5</span><span class="match-badge m">Exact Match (Accepted)</span></div>
+        <div class="match-row matched"><span>GSTIN: 27FGHIJ5678K2L3</span><span class="match-badge m">Fuzzy Match (Accepted)</span></div>
+        <div class="match-row pending"><span>GSTIN: 29MNOPQ9012R3S4</span><span class="match-badge p">Pending Review</span></div>
+        <div class="match-row mismatch"><span>GSTIN: 33TUVWX3456Y7Z8</span><span class="match-badge x">Difference Flagged</span></div>
+        <div class="match-row matched"><span>GSTIN: 24LMNOP7890Q1R2</span><span class="match-badge m">Amount Match (Accepted)</span></div>
+        <div class="itc-box"><div class="itc-label">Net Claimable ITC Summary</div><div class="itc-amount">&#8377; 2,34,850.00</div></div>
       </div>
-      <div class="floating-tag t2">&#9889; Dark Mode Ready</div>
+      <div class="floating-tag t2">&#9889; Side-by-Side &amp; PDF Export</div>
+    </div>
+  </div>
+</section>
+
+<!-- AS-IS PORTAL UPLOAD BANNER -->
+<section style="padding: 24px 5%; background:#fff">
+  <div class="section-inner">
+    <div class="as-is-banner">
+      <div class="as-is-banner-text">
+        <h4>⚡ 2-Files Mode: Direct Portal Upload As-Is</h4>
+        <p>Direct as-is portal file upload is built exclusively for <strong>2-Files Mode</strong>. In <strong>4-Files Mode</strong>, upload separate Purchase and CN/DN files using standard template column headers for both Portal &amp; Books data.</p>
+      </div>
+      <a href="https://chromewebstore.google.com/detail/gstsync-pro/aaclnkpbjahikebmjbdmiamlgdohfobl?hl=en-US&utm_source=ext_sidebar&pli=1" target="_blank" class="btn-primary" style="background:#fff;color:var(--green-deep);font-weight:700;white-space:nowrap">Try Free on Chrome</a>
     </div>
   </div>
 </section>
@@ -154,12 +177,12 @@
   <div class="section-inner">
     <div class="section-label">Simple Process</div>
     <div class="section-title">How GSTSyncPro Works</div>
-    <p class="section-sub">From file upload to ITC summary in four easy steps. No data leaves your browser.</p>
+    <p class="section-sub">From file upload to complete ITC summary and portal JSON export in four easy steps. 100% private in your browser.</p>
     <div class="steps">
-      <div class="step-card"><div class="step-num">1</div><h3>Upload Files</h3><p>Drag &amp; drop your GSTR-2B/IMS Purchase, Books Purchase, GSTR-2B/IMS CN/DN, and Books CN/DN files directly. Commas in amounts are automatically removed for error-free parsing.</p></div>
-      <div class="step-card"><div class="step-num">2</div><h3>Auto-Reconcile</h3><p>GSTSyncPro runs 3-pass purchase matching (Exact &#8594; Fuzzy &#8594; Amount) and 6-pass CN/DN matching. Toggle between GSTR-2B and IMS modes instantly.</p></div>
-      <div class="step-card"><div class="step-num">3</div><h3>Review &amp; Act</h3><p>Accept, unmatch, pair, force-pair or mark as "Not Matched" on each record. Filter by IMS status (Pending, Accepted, Rejected) or supplier GSTIN.</p></div>
-      <div class="step-card"><div class="step-num">4</div><h3>Export Results</h3><p>Export your reconciliation as formatted Excel, IMS JSON (upload-ready), or copy the ITC summary directly &#8212; Net Claimable ready.</p></div>
+      <div class="step-card"><div class="step-num">1</div><h3>Upload Files (2-Files or 4-Files)</h3><p>In <strong>2-Files Mode</strong>, upload GST Portal files directly <em>as-is</em> without editing. In <strong>4-Files Mode</strong>, upload separate Purchase &amp; CN/DN files using standard template headers for both Portal and Books files.</p></div>
+      <div class="step-card"><div class="step-num">2</div><h3>Smart Auto-Match</h3><p>GSTSyncPro runs smart auto-matching algorithms across purchases, credit notes, and debit notes with automatic comma cleaning for exact amount precision.</p></div>
+      <div class="step-card"><div class="step-num">3</div><h3>Side-by-Side Pairing Review</h3><p>Review unmatched and pending entries side-by-side in Chrome. Matched entries auto-action as Accept, while unmatched rows remain Pending for manual Pair or Unmatch overrides. Not-filed entries are ignored.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h3>1-Click Export</h3><p>Export portal-ready IMS Action JSON files for direct GST portal upload, along with formatted Excel spreadsheets and printable PDF reports.</p></div>
     </div>
     <div style="text-align:center;margin-top:36px"><a href="how-it-works/" class="btn-secondary">Full Process Details &#8594;</a></div>
   </div>
@@ -171,7 +194,7 @@
     <div style="text-align:center;margin-bottom:30px">
       <div class="section-label">Video Tutorial</div>
       <h2 class="section-title">See GSTSyncPro In Action</h2>
-      <p class="section-sub" style="margin:0 auto">Watch this walkthrough to see how to run GSTR-2B &amp; IMS reconciliation, manage matching options, filter by IMS status, and export reports.</p>
+      <p class="section-sub" style="margin:0 auto">Watch this walkthrough to see side-by-side reconciliation, IMS action JSON export, and PDF report generation in action.</p>
     </div>
     <div class="video-container-wrapper">
       <div class="video-container">
@@ -185,17 +208,34 @@
 <section id="features">
   <div class="section-inner">
     <div class="section-label">Capabilities</div>
-    <div class="section-title">Everything You Need for GST Reconciliation &amp; Returns</div>
-    <p class="section-sub">Built for CA firms, tax professionals, and businesses handling GSTR-2B matching and GSTR-3B preparation at scale.</p>
+    <div class="section-title">Everything You Need for GST &amp; IMS Reconciliation</div>
+    <p class="section-sub">Built specifically for Indian tax professionals, CAs, and accounts teams handling monthly and quarterly GST returns.</p>
     <div class="features-grid">
-      <div class="feat"><div class="feat-icon">&#128194;</div><h3>Flexible Upload</h3><p>Upload GSTR-2B or IMS data along with Books. Commas in amounts are automatically stripped to prevent mismatch issues.</p></div>
-      <div class="feat"><div class="feat-icon">&#128260;</div><h3>3-Pass Purchase Matching</h3><p>Exact match &#8594; Fuzzy match &#8594; Amount-based match. Comma-removed amounts ensure 100% exact numerical comparison.</p></div>
-      <div class="feat"><div class="feat-icon">&#8597;&#65039;</div><h3>6-Pass CN/DN Matching</h3><p>Cross-type (3 passes) + Same-type (3 passes) for complete Credit &amp; Debit Note reconciliation.</p></div>
-      <div class="feat"><div class="feat-icon">&#128176;</div><h3>IMS vs Books Mode</h3><p>Reconcile Invoice Management System (IMS) data with Books. Filter by IMS Status (Pending, Accepted, Rejected).</p></div>
-      <div class="feat"><div class="feat-icon">&#128202;</div><h3>Excel &amp; IMS JSON Export</h3><p>Export formatted Excel sheets or download Portal-compatible IMS JSON files alongside copying the ITC Summary.</p></div>
-      <div class="feat"><div class="feat-icon">&#128190;</div><h3>Auto-Save State</h3><p>Your work is automatically saved and restored when you reopen the extension. No data loss.</p></div>
+      <div class="feat"><div class="feat-icon">&#128194;</div><h3>Direct "As-Is" Upload (2-Files)</h3><p>Upload GSTR-2B or IMS files directly as downloaded from the GST Portal in 2-Files Mode. No column reformatting or comma cleaning needed.</p></div>
+      <div class="feat"><div class="feat-icon">&#128065;</div><h3>Side-by-Side Pairing View</h3><p>Compare unmatched Books vs Portal data side-by-side to manually pair non-matched transactions with intuitive Pair, Force Pair, and Unmatch controls.</p></div>
+      <div class="feat"><div class="feat-icon">&#128260;</div><h3>Smart Auto-Matching</h3><p>Intelligent auto-matching for purchase registers and Credit/Debit Notes ensuring exact numerical accuracy without false mismatches.</p></div>
+      <div class="feat"><div class="feat-icon">&#128176;</div><h3>IMS vs Books Mode</h3><p>Match Books with Invoice Management System (IMS) data. Matched entries auto-action as Accept, unmatched entries remain Pending for side-by-side pairing.</p></div>
+      <div class="feat"><div class="feat-icon">&#128202;</div><h3>1-Click IMS JSON &amp; PDF Export</h3><p>Export portal-ready IMS Action JSON files for direct GST portal upload, plus formatted Excel sheets and printable PDF reports.</p></div>
+      <div class="feat"><div class="feat-icon">&#128274;</div><h3>100% Browser Local Privacy</h3><p>All file parsing and matching happens locally inside Chrome. Your financial data is never uploaded to any server.</p></div>
     </div>
-    <div style="text-align:center;margin-top:36px"><a href="features/" class="btn-secondary">See All 9 Features &#8594;</a></div>
+    <div style="text-align:center;margin-top:36px"><a href="features/" class="btn-secondary">See All Features &#8594;</a></div>
+  </div>
+</section>
+
+<!-- CHROME WEB STORE REVIEWS SECTION -->
+<section style="background: var(--green-pale); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 60px 5%;">
+  <div class="section-inner" style="text-align: center;">
+    <div class="section-label">Official Chrome Extension Reviews</div>
+    <h2 class="section-title">Rate &amp; Read Reviews Directly on Chrome Web Store</h2>
+    <p class="section-sub" style="margin: 0 auto 28px;">All user ratings and reviews for GSTSyncPro are hosted directly on the official Google Chrome Web Store for complete authenticity and transparency.</p>
+    
+    <div style="display: inline-flex; flex-direction: column; align-items: center; background: #fff; border-radius: 20px; padding: 32px 48px; border: 1px solid var(--gray-200); box-shadow: var(--shadow);">
+      <div style="font-size: 32px; font-weight: 800; color: var(--green-deep); font-family: 'Space Grotesk', sans-serif; line-height: 1.2;">Google Chrome Web Store</div>
+      <div style="font-size: 14px; color: var(--gray-600); margin: 8px 0 20px;">Verified Extension Ratings &amp; User Feedback</div>
+      <a href="https://chromewebstore.google.com/detail/aaclnkpbjahikebmjbdmiamlgdohfobl?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 16px; padding: 14px 32px;">
+        <span>⭐ View &amp; Submit Reviews on Chrome Web Store &#8594;</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -245,11 +285,11 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-          <div style="width:36px;height:36px;background:linear-gradient(135deg,#0a4f2e,#22c55e);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:Syne,sans-serif;font-weight:800;font-size:15px">I</div>
+        <div class="footer-brand-row">
+          <div class="footer-logo-icon">I</div>
           <div>
-            <div style="color:#fff;font-family:Syne,sans-serif;font-weight:800;font-size:17px">Infitax Solution</div>
-            <div style="color:#22c55e;font-size:11px;font-weight:600;letter-spacing:.3px">Makers of GSTSyncPro</div>
+            <div class="footer-brand-name">Infitax Solution</div>
+            <div class="footer-brand-sub">Makers of GSTSyncPro</div>
           </div>
         </div>
         <p>GSTSyncPro — advanced GSTR-2B &amp; IMS reconciliation tool for Indian tax professionals. Kachchh, Gujarat, India.</p>
@@ -289,6 +329,6 @@
   </div>
 </div>
 <div class="toast" id="toast"></div>
-<script src="assets/script.js"></script>
+<script src="assets/script.js" defer></script>
 </body>
 </html>

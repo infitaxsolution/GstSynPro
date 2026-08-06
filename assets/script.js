@@ -18,14 +18,23 @@
 // ─── MOBILE NAV ──────────────────────────────────────────────────────────────
 function toggleMenu() {
   var m = document.getElementById('mobileMenu');
-  if (m) m.classList.toggle('open');
+  var btn = document.querySelector('.hamburger');
+  if (m) {
+    var isOpen = m.classList.toggle('open');
+    if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
 }
 
 // ─── SMOOTH ANCHOR SCROLL ────────────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(function (a) {
   a.addEventListener('click', function (e) {
     var href = a.getAttribute('href');
-    if (href === '#') return;
+    if (href === '#' || href === '#main-content') {
+      e.preventDefault();
+      var main = document.getElementById('main-content');
+      if (main) main.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
     var target = document.querySelector(href);
     if (target) {
       e.preventDefault();
@@ -40,32 +49,33 @@ function toggleFaq(el) {
   if (!item) item = el.parentElement;
   // Close all others
   document.querySelectorAll('.faq-item.open').forEach(function (o) {
-    if (o !== item) o.classList.remove('open');
+    if (o !== item) {
+      o.classList.remove('open');
+      var btn = o.querySelector('.faq-q');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
   });
-  item.classList.toggle('open');
+  var isOpen = item.classList.toggle('open');
+  el.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 
 // ─── PRICING MODAL ───────────────────────────────────────────────────────────
 var plans = {
   silver: {
-    name: 'Silver Plan', icon: '🥈', desc: '1 User · 1 Year',
+    name: 'Silver Plan (v1.0.4 Unlocked)', icon: '🥈', desc: '1 User · 1 Year Validity',
     orig: '₹300', curr: '₹150',
-    features: ['1 User License', '1 Year Validity', 'All Features Unlocked', 'File Upload Enabled', 'Excel & JSON Export', 'Email Support', 'Price inclusive of GST'],
+    features: ['1 User License', '1 Year Validity', '2-Files Mode (As-Is Portal Upload)', '4-Files Mode (Standard Template Headers)', 'GSTR-2B & IMS Modes', 'IMS Action JSON Export (Portal Ready)', 'PDF & Excel Report Exports', 'Side-by-Side Matching', '100% Private Local Processing', 'Email Support', 'Price inclusive of GST'],
     link: 'https://pages.razorpay.com/infitaxsolutionsilverplans'
   },
   gold: {
-    name: 'Gold Plan', icon: '🥇', desc: 'Up to 5 Users · 1 Year',
+    name: 'Gold Plan (v1.0.4 Unlocked)', icon: '🥇', desc: 'Up to 5 Users · 1 Year Validity',
     orig: '₹700', curr: '₹350',
-    features: ['Up to 5 Users', '1 Year Validity', 'All Features Unlocked', 'File Upload Enabled', 'Excel & JSON Export', 'Priority Email Support', 'Price inclusive of GST'],
+    features: ['Up to 5 Users', '1 Year Validity', '2-Files Mode (As-Is Portal Upload)', '4-Files Mode (Standard Template Headers)', 'GSTR-2B & IMS Modes', 'IMS Action JSON Export (Portal Ready)', 'PDF & Excel Report Exports', 'Side-by-Side Matching', '100% Private Local Processing', 'Priority Support', 'Price inclusive of GST'],
     link: 'https://pages.razorpay.com/infitaxsolutiongoldplans'
-  },
-  platinum: {
-    name: 'Platinum Plan', icon: '💎', desc: 'Up to 3 Users · Lifetime',
-    orig: '₹10,000', curr: '₹5,000',
-    features: ['Up to 3 Users', 'Lifetime Validity', 'All Features Unlocked', 'All Future Updates', 'File Upload Enabled', 'Priority Support Forever', 'Price inclusive of GST'],
-    link: 'https://pages.razorpay.com/infitaxsolutionlifetimeplan'
   }
 };
+
+var lastFocusedElement = null;
 
 function openModal(plan) {
   var p = plans[plan];
@@ -85,7 +95,17 @@ function openModal(plan) {
     '<button class="pay-btn" onclick="goToPay(\'' + plan + '\')">💳 Pay ' + p.curr + ' — Secure Checkout →</button>' +
     '<p class="modal-note" style="margin-top:14px">🔒 Secure payment via Razorpay &nbsp;|&nbsp; All payment methods accepted<br>License key sent to your email instantly<br><strong>Questions?</strong> WhatsApp us at +91 6354030446</p>';
   var overlay = document.getElementById('payModal');
-  if (overlay) overlay.classList.add('open');
+  if (overlay) {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    // Focus management: store current focus and move into modal
+    lastFocusedElement = document.activeElement;
+    // Focus the close button after a brief delay to allow DOM update
+    setTimeout(function () {
+      var closeBtn = overlay.querySelector('.modal-close');
+      if (closeBtn) closeBtn.focus();
+    }, 50);
+  }
 }
 
 function goToPay(plan) {
@@ -94,7 +114,12 @@ function goToPay(plan) {
 
 function closeModal() {
   var overlay = document.getElementById('payModal');
-  if (overlay) overlay.classList.remove('open');
+  if (overlay) {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    // Restore focus to the element that opened the modal
+    if (lastFocusedElement) lastFocusedElement.focus();
+  }
 }
 
 // Close modal on overlay click
@@ -103,8 +128,37 @@ document.addEventListener('click', function (e) {
   if (overlay && e.target === overlay) closeModal();
 });
 
+// Close modal on Escape key + focus trap
+document.addEventListener('keydown', function (e) {
+  var overlay = document.getElementById('payModal');
+  if (!overlay || !overlay.classList.contains('open')) return;
+
+  if (e.key === 'Escape') {
+    closeModal();
+    return;
+  }
+
+  // Focus trap: keep Tab within modal
+  if (e.key === 'Tab') {
+    var focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length === 0) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+});
+
 // ─── CONTACT FORM (Cloudflare Worker + D1) ───────────────────────────────────
-// ↓ Replace this URL with your deployed Cloudflare Worker URL after setup
 var WORKER_URL = 'https://contact.manavsolankis3.workers.dev/contact';
 
 async function submitForm() {
@@ -151,20 +205,6 @@ async function submitForm() {
   } finally {
     resetBtn();
   }
-}
-
-// ─── NOTIFY FORM (products page) ─────────────────────────────────────────────
-function notifyMe(btn, productName) {
-  var form = btn.closest('.notify-form');
-  var input = form ? form.querySelector('input') : null;
-  if (!input || !input.value.trim()) {
-    showToast('⚠️ Enter your email to get notified.');
-    return;
-  }
-  btn.textContent = '✓ Noted!';
-  btn.disabled = true;
-  btn.style.background = '#16a34a';
-  showToast('✅ You\'ll be notified when ' + productName + ' launches!');
 }
 
 // ─── TOAST ───────────────────────────────────────────────────────────────────
