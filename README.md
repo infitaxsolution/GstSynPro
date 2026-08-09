@@ -67,3 +67,8 @@ The contact form posts to a Cloudflare Worker that stores submissions in a D1 da
 ## License
 
 [MIT](LICENSE) — © 2026 Infitax Solution
+
+
+## Final CTA
+
+The site includes a responsive **Add to Chrome** CTA in the main navigation and homepage hero, linking directly to the GSTSyncPro Chrome Web Store listing.

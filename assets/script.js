@@ -215,3 +215,208 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(function () { t.classList.remove('show'); }, 3500);
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MOTION SYSTEM — Manu Arora's 3 principles:
+// 1. Gradual Revelation  2. Seamless Transitions  3. Careful Delight
+// ═══════════════════════════════════════════════════════════════════════════════
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── SCROLL PROGRESS BAR (seamless transition indicator) ─────────────────────
+  function initScrollProgress() {
+    if (reduceMotion) return;
+    var bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+    function update() {
+      var st = document.documentElement.scrollTop || document.body.scrollTop;
+      var sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var pct = sh > 0 ? (st / sh) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  // ── SCROLL REVEAL (gradual revelation via IntersectionObserver) ─────────────
+  function initScrollReveal() {
+    var els = document.querySelectorAll('.reveal');
+    if (els.length === 0) return;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  // ── HERO CARD GRADUAL REVELATION (match-rows appear one-by-one) ─────────────
+  function initHeroCard() {
+    var card = document.querySelector('.hero-card');
+    if (!card) return;
+    if (reduceMotion) {
+      card.classList.add('loaded');
+      return;
+    }
+    // Small delay so the page settles before the choreography begins
+    setTimeout(function () { card.classList.add('loaded'); }, 200);
+  }
+
+  // ── ANIMATED COUNTERS (careful delight — the climax moment) ─────────────────
+  function animateCounter(el) {
+    var target = parseFloat(el.getAttribute('data-counter'));
+    var prefix = el.getAttribute('data-prefix') || '';
+    var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var duration = parseInt(el.getAttribute('data-duration') || '1600', 10);
+    var useIndian = el.getAttribute('data-indian') === 'true';
+
+    if (reduceMotion) {
+      el.textContent = prefix + formatNumber(target, decimals, useIndian) + suffix;
+      return;
+    }
+
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      // easeOutCubic
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var val = target * eased;
+      el.textContent = prefix + formatNumber(val, decimals, useIndian) + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = prefix + formatNumber(target, decimals, useIndian) + suffix;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function formatNumber(num, decimals, useIndian) {
+    if (useIndian) {
+      // Indian numbering: 2,34,850.00
+      var parts = num.toFixed(decimals).split('.');
+      var intPart = parts[0];
+      var lastThree = intPart.slice(-3);
+      var otherNumbers = intPart.slice(0, -3);
+      if (otherNumbers !== '') {
+        lastThree = ',' + lastThree;
+      }
+      var formatted = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree;
+      return decimals > 0 ? formatted + '.' + parts[1] : formatted;
+    }
+    return num.toLocaleString('en-IN', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    });
+  }
+
+  function initCounters() {
+    var counters = document.querySelectorAll('[data-counter]');
+    if (counters.length === 0) return;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      counters.forEach(function (el) { animateCounter(el); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(function (el) { io.observe(el); });
+  }
+
+  // ── NAV SCROLL STATE (seamless transition — nav shrinks subtly on scroll) ───
+  function initNavScroll() {
+    var nav = document.querySelector('nav');
+    if (!nav || reduceMotion) return;
+    var lastScroll = 0;
+    window.addEventListener('scroll', function () {
+      var cur = window.scrollY;
+      if (cur > 20) {
+        nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+      lastScroll = cur;
+    }, { passive: true });
+  }
+
+  // ── AUTO-ADD .reveal TO COMMON ELEMENTS (no manual markup needed) ───────────
+  function autoReveal() {
+    if (reduceMotion) return;
+    // Add reveal classes to step cards with stagger
+    var steps = document.querySelectorAll('.step-card');
+    steps.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.setAttribute('data-delay', String(i + 1));
+    });
+    // Feature cards
+    var feats = document.querySelectorAll('.feat');
+    feats.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.setAttribute('data-delay', String((i % 6) + 1));
+    });
+    // Plans
+    var plans = document.querySelectorAll('.plan');
+    plans.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.setAttribute('data-delay', String(i + 1));
+    });
+    // FAQ items
+    var faqs = document.querySelectorAll('.faq-item');
+    faqs.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.setAttribute('data-delay', String((i % 6) + 1));
+    });
+    // Section titles and labels
+    document.querySelectorAll('.section-title, .section-label, .section-sub').forEach(function (el) {
+      el.classList.add('reveal');
+    });
+    // Discount banner
+    var db = document.querySelector('.discount-banner');
+    if (db) db.classList.add('reveal');
+    // Product cards
+    var pcs = document.querySelectorAll('.product-card');
+    pcs.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.setAttribute('data-delay', String((i % 6) + 1));
+    });
+  }
+
+  // ── INIT ON DOM READY ──────────────────────────────────────────────────────
+  function init() {
+    autoReveal();
+    initScrollProgress();
+    initScrollReveal();
+    initHeroCard();
+    initCounters();
+    initNavScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
