@@ -1,8 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 + Consent Mode v2 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // Default consent: denied until visitor accepts via the cookie banner.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9V9T6C8QKY"></script>
+<script>
+  gtag('config', 'G-9V9T6C8QKY', { anonymize_ip: true });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://infitaxsolution.com/products/">
 <title>Products — Infitax Solution</title>
 <meta name="description" content="Products by Infitax Solution — powerful tools built for Indian GST & tax professionals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +38,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.infitaxsolution.com/"
+      "item": "https://infitaxsolution.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Other Products",
-      "item": "https://www.infitaxsolution.com/products/"
+      "item": "https://infitaxsolution.com/products/"
     }
   ]
 }
@@ -152,5 +173,6 @@
 
 <div class="toast" id="toast"></div>
 <script src="../assets/script.js" defer></script>
+<script src="../assets/analytics.js" defer></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # GSTSyncPro — Marketing Website
 
-The official website for **GSTSyncPro**, an advanced GSTR-2B & IMS reconciliation Chrome extension by [Infitax Solution](https://www.infitaxsolution.com).
+The official website for **GSTSyncPro**, an advanced GSTR-2B & IMS reconciliation Chrome extension by [Infitax Solution](https://infitaxsolution.com).
 
 ## About
 
@@ -54,7 +54,7 @@ Then visit `http://localhost:8000`.
 
 ## Deployment
 
-The site is hosted at [www.infitaxsolution.com](https://www.infitaxsolution.com). Deploy by uploading files to your hosting provider (Cloudflare Pages, Netlify, Vercel, or any static host).
+The site is hosted at [infitaxsolution.com](https://infitaxsolution.com). Deploy by uploading files to your hosting provider (Cloudflare Pages, Netlify, Vercel, or any static host).
 
 ### Contact Form Backend
 

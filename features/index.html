@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 + Consent Mode v2 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // Default consent: denied until visitor accepts via the cookie banner.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9V9T6C8QKY"></script>
+<script>
+  gtag('config', 'G-9V9T6C8QKY', { anonymize_ip: true });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GSTSyncPro v1.0.4 Features — Direct GST &amp; IMS Reconciliation</title>
-<meta name="description" content="Discover GSTSyncPro v1.0.4 features: As-Is GST Portal file upload, Side-by-Side matching view, IMS vs Books, 1-Click IMS JSON export, PDF reports & 100% browser local privacy.">
-<link rel="canonical" href="https://www.infitaxsolution.com/features/">
+<title>GSTSyncPro Features — Direct GST &amp; IMS Reconciliation</title>
+<meta name="description" content="Discover GSTSyncPro features: As-Is GST Portal file upload, Side-by-Side matching view, IMS vs Books, 1-Click IMS JSON export, PDF reports & 100% browser local privacy.">
+<link rel="canonical" href="https://infitaxsolution.com/features/">
 <!-- Security & Rating Metadata -->
 <meta name="rating" content="General">
 <meta name="classification" content="Business &amp; Finance, Tax Software, Chrome Extensions">
@@ -24,13 +44,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.infitaxsolution.com/"
+      "item": "https://infitaxsolution.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Features",
-      "item": "https://www.infitaxsolution.com/features/"
+      "item": "https://infitaxsolution.com/features/"
     }
   ]
 }
@@ -70,7 +90,7 @@
 </div>
 <div class="page-header" id="main-content">
   <div class="section-inner">
-    <div class="section-label">Version 1.0.4 Capabilities</div>
+    <div class="section-label">Core Capabilities</div>
     <h1>GST &amp; IMS Reconciliation Capabilities</h1>
     <p>Everything you need for GSTR-2B &amp; IMS reconciliation — direct as-is file upload in 2-Files Mode, side-by-side comparative views, portal JSON export, and PDF reports.</p>
   </div>
@@ -141,5 +161,6 @@
 
 <div class="toast" id="toast"></div>
 <script src="../assets/script.js" defer></script>
+<script src="../assets/analytics.js" defer></script>
 </body>
 </html>

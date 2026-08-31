@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 + Consent Mode v2 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // Default consent: denied until visitor accepts via the cookie banner.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9V9T6C8QKY"></script>
+<script>
+  gtag('config', 'G-9V9T6C8QKY', { anonymize_ip: true });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How GSTSyncPro v1.0.4 Works — Direct GST &amp; IMS Reconciliation</title>
-<meta name="description" content="Learn how GSTSyncPro v1.0.4 reconciles GSTR-2B and IMS with Books in 4 steps: direct as-is file upload, smart auto-match, side-by-side review, and portal JSON/PDF export. 100% local browser privacy.">
-<link rel="canonical" href="https://www.infitaxsolution.com/how-it-works/">
+<title>How GSTSyncPro Works — Direct GST &amp; IMS Reconciliation</title>
+<meta name="description" content="Learn how GSTSyncPro reconciles GSTR-2B and IMS with Books in 4 steps: direct as-is file upload, smart auto-match, side-by-side review, and portal JSON/PDF export. 100% local browser privacy.">
+<link rel="canonical" href="https://infitaxsolution.com/how-it-works/">
 <!-- Security & Rating Metadata -->
 <meta name="rating" content="General">
 <meta name="classification" content="Business &amp; Finance, Tax Software, Chrome Extensions">
@@ -24,13 +44,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.infitaxsolution.com/"
+      "item": "https://infitaxsolution.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "How it Works",
-      "item": "https://www.infitaxsolution.com/how-it-works/"
+      "item": "https://infitaxsolution.com/how-it-works/"
     }
   ]
 }
@@ -158,5 +178,6 @@
 
 <div class="toast" id="toast"></div>
 <script src="../assets/script.js" defer></script>
+<script src="../assets/analytics.js" defer></script>
 </body>
 </html>

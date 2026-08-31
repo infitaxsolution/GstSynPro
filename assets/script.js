@@ -62,13 +62,13 @@ function toggleFaq(el) {
 // ─── PRICING MODAL ───────────────────────────────────────────────────────────
 var plans = {
   silver: {
-    name: 'Silver Plan (v1.0.4 Unlocked)', icon: '🥈', desc: '1 User · 1 Year Validity',
+    name: 'Silver Plan', icon: '🥈', desc: '1 User · 1 Year Validity',
     orig: '₹300', curr: '₹150',
     features: ['1 User License', '1 Year Validity', '2-Files Mode (As-Is Portal Upload)', '4-Files Mode (Standard Template Headers)', 'GSTR-2B & IMS Modes', 'IMS Action JSON Export (Portal Ready)', 'PDF & Excel Report Exports', 'Side-by-Side Matching', '100% Private Local Processing', 'Email Support', 'Price inclusive of GST'],
     link: 'https://pages.razorpay.com/infitaxsolutionsilverplans'
   },
   gold: {
-    name: 'Gold Plan (v1.0.4 Unlocked)', icon: '🥇', desc: 'Up to 5 Users · 1 Year Validity',
+    name: 'Gold Plan', icon: '🥇', desc: 'Up to 5 Users · 1 Year Validity',
     orig: '₹700', curr: '₹350',
     features: ['Up to 5 Users', '1 Year Validity', '2-Files Mode (As-Is Portal Upload)', '4-Files Mode (Standard Template Headers)', 'GSTR-2B & IMS Modes', 'IMS Action JSON Export (Portal Ready)', 'PDF & Excel Report Exports', 'Side-by-Side Matching', '100% Private Local Processing', 'Priority Support', 'Price inclusive of GST'],
     link: 'https://pages.razorpay.com/infitaxsolutiongoldplans'

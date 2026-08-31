@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 + Consent Mode v2 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // Default consent: denied until visitor accepts via the cookie banner.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9V9T6C8QKY"></script>
+<script>
+  gtag('config', 'G-9V9T6C8QKY', { anonymize_ip: true });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ — GSTSyncPro v1.0.4 GST &amp; IMS Reconciliation</title>
-<meta name="description" content="Frequently asked questions about GSTSyncPro v1.0.4: As-Is GST Portal file upload, Side-by-Side matching, IMS JSON export, PDF reports, licensing, and 100% browser local privacy.">
-<link rel="canonical" href="https://www.infitaxsolution.com/faq/">
+<title>FAQ — GSTSyncPro GST &amp; IMS Reconciliation</title>
+<meta name="description" content="Frequently asked questions about GSTSyncPro: As-Is GST Portal file upload, Side-by-Side matching, IMS JSON export, PDF reports, licensing, and 100% browser local privacy.">
+<link rel="canonical" href="https://infitaxsolution.com/faq/">
 <!-- Security & Rating Metadata -->
 <meta name="rating" content="General">
 <meta name="classification" content="Business &amp; Finance, Tax Software, Chrome Extensions">
@@ -64,7 +84,7 @@
       "name": "Does GSTSyncPro support PDF report exports?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes! Version 1.0.4 includes direct PDF report generation, enabling you to export clean, printable reconciliation summaries alongside formatted Excel (.xlsx) spreadsheets and portal JSON files."
+        "text": "Yes! GSTSyncPro includes direct PDF report generation, enabling you to export clean, printable reconciliation summaries alongside formatted Excel (.xlsx) spreadsheets and portal JSON files."
       }
     },
     {
@@ -95,13 +115,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.infitaxsolution.com/"
+      "item": "https://infitaxsolution.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "FAQ",
-      "item": "https://www.infitaxsolution.com/faq/"
+      "item": "https://infitaxsolution.com/faq/"
     }
   ]
 }
@@ -143,7 +163,7 @@
   <div class="section-inner">
     <div class="section-label">Frequently Asked Questions</div>
     <h1>Frequently Asked Questions</h1>
-    <p>Everything you need to know about GSTSyncPro v1.0.4, 2-Files Mode as-is portal upload, 4-Files Mode template headers, side-by-side matching, and privacy.</p>
+    <p>Everything you need to know about GSTSyncPro, 2-Files Mode as-is portal upload, 4-Files Mode template headers, side-by-side matching, and privacy.</p>
   </div>
 </div>
 <div class="page-inner">
@@ -178,7 +198,7 @@
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Does GSTSyncPro support PDF report exports? <span class="faq-arrow">&#9660;</span></button>
-    <div class="faq-a">Yes! Version 1.0.4 includes direct PDF report generation, enabling you to export clean, printable reconciliation summaries alongside formatted Excel (.xlsx) spreadsheets and portal JSON files.</div>
+    <div class="faq-a">Yes! GSTSyncPro includes direct PDF report generation, enabling you to export clean, printable reconciliation summaries alongside formatted Excel (.xlsx) spreadsheets and portal JSON files.</div>
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is my data safe? Does it upload anywhere? <span class="faq-arrow">&#9660;</span></button>
@@ -186,7 +206,7 @@
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What is the difference between Silver and Gold plans? <span class="faq-arrow">&#9660;</span></button>
-    <div class="faq-a">Silver is for 1 user for 1 year (&#8377;150 incl. GST). Gold is for up to 5 users for 1 year (&#8377;350 incl. GST). All plans unlock all v1.0.4 features &#8212; only user count differs. All prices shown are inclusive of GST after the 50% launch discount.</div>
+    <div class="faq-a">Silver is for 1 user for 1 year (&#8377;150 incl. GST). Gold is for up to 5 users for 1 year (&#8377;350 incl. GST). All plans unlock all features &#8212; only user count differs. All prices shown are inclusive of GST after the 50% launch discount.</div>
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Can I test drive GSTSyncPro with sample data for free? <span class="faq-arrow">&#9660;</span></button>
@@ -248,5 +268,6 @@
 
 <div class="toast" id="toast"></div>
 <script src="../assets/script.js" defer></script>
+<script src="../assets/analytics.js" defer></script>
 </body>
 </html>
